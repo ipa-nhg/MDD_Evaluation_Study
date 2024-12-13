@@ -1,0 +1,7 @@
+cob_joint_state:
+	artifacts:
+		cob_joint_state:
+			node: cob_joint_state
+			publishers: 
+				"joint_states":
+					type: "sensor_msgs/msg/JointState"

@@ -1,0 +1,137 @@
+torso_controller:
+  artifacts:
+    torso_controller:
+      node: torso_controller
+      publishers:
+        'torso_controller/controller_state':
+          type: 'control_msgs/msg/JointTrajectoryControllerState'
+          qos:
+          # profile:
+          # history: UNKNOWN
+          # depth:
+            reliability: reliable
+            durability: transient_local
+        'torso_controller/state':
+          type: 'control_msgs/msg/JointTrajectoryControllerState'
+          qos:
+          # profile:
+          # history: UNKNOWN
+          # depth:
+            reliability: reliable
+            durability: transient_local
+        'torso_controller/transition_event':
+          type: 'lifecycle_msgs/msg/TransitionEvent'
+          qos:
+          # profile:
+          # history: UNKNOWN
+          # depth:
+            reliability: reliable
+            durability: volatile
+      subscribers:
+        'clock':
+          type: 'rosgraph_msgs/msg/Clock'
+        'torso_controller/joint_trajectory':
+          type: 'trajectory_msgs/msg/JointTrajectory'
+      actionservers:
+        'torso_controller/follow_joint_trajectory':
+          type: 'control_msgs/action/FollowJointTrajectory'
+      serviceservers:
+        'torso_controller/query_state':
+          type: 'control_msgs/srv/QueryTrajectoryState'
+      parameters:
+        'action_monitor_rate':
+          type: Double
+          value: 20.0
+        'allow_integration_in_goal_trajectories':
+          type: Boolean
+          value: false
+        'allow_nonzero_velocity_at_trajectory_end':
+          type: Boolean
+          value: true
+        'allow_partial_joints_goal':
+          type: Boolean
+          value: false
+        'cmd_timeout':
+          type: Double
+          value: 0.0
+        'command_interfaces':
+          type: Array[String]
+          value: ['position']
+        'command_joints':
+          type: Array[String]
+          #value: []
+        'constraints.goal_time':
+          type: Double
+          value: 0.0
+        'constraints.stopped_velocity_tolerance':
+          type: Double
+          value: 0.01
+        'constraints.torso_2_joint.goal':
+          type: Double
+          value: 0.0
+        'constraints.torso_2_joint.trajectory':
+          type: Double
+          value: 0.0
+        'constraints.torso_3_joint.goal':
+          type: Double
+          value: 0.0
+        'constraints.torso_3_joint.trajectory':
+          type: Double
+          value: 0.0
+        'gains.torso_2_joint.angle_wraparound':
+          type: Boolean
+          value: false
+        'gains.torso_2_joint.d':
+          type: Double
+          value: 0.0
+        'gains.torso_2_joint.ff_velocity_scale':
+          type: Double
+          value: 0.0
+        'gains.torso_2_joint.i':
+          type: Double
+          value: 0.0
+        'gains.torso_2_joint.i_clamp':
+          type: Double
+          value: 0.0
+        'gains.torso_2_joint.normalize_error':
+          type: Boolean
+          value: false
+        'gains.torso_2_joint.p':
+          type: Double
+          value: 0.0
+        'gains.torso_3_joint.angle_wraparound':
+          type: Boolean
+          value: false
+        'gains.torso_3_joint.d':
+          type: Double
+          value: 0.0
+        'gains.torso_3_joint.ff_velocity_scale':
+          type: Double
+          value: 0.0
+        'gains.torso_3_joint.i':
+          type: Double
+          value: 0.0
+        'gains.torso_3_joint.i_clamp':
+          type: Double
+          value: 0.0
+        'gains.torso_3_joint.normalize_error':
+          type: Boolean
+          value: false
+        'gains.torso_3_joint.p':
+          type: Double
+          value: 0.0
+        'interface_name':
+          type: String
+          value: "position"
+        'interpolation_method':
+          type: String
+          value: "splines"
+        'joints':
+          type: Array[String]
+          value: ['torso_2_joint', 'torso_3_joint']
+        'open_loop_control':
+          type: Boolean
+          value: false
+
+
+      

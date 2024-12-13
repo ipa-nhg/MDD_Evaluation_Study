@@ -1,0 +1,78 @@
+lifecycle_manager_navigation:
+  artifacts:
+    lifecycle_manager_navigation: # change to exector name
+      node: lifecycle_manager_navigation
+      publishers:
+        "diagnostics":
+          type: "diagnostic_msgs/msg/DiagnosticArray"
+      serviceclients:
+        "behavior_server/change_state":
+          type: "lifecycle_msgs/srv/ChangeState"
+        "behavior_server/get_state":
+          type: "lifecycle_msgs/srv/GetState"
+        "bt_navigator/change_state":
+          type: "lifecycle_msgs/srv/ChangeState"
+        "bt_navigator/get_state":
+          type: "lifecycle_msgs/srv/GetState"
+        "controller_server/change_state":
+          type: "lifecycle_msgs/srv/ChangeState"
+        "controller_server/get_state":
+          type: "lifecycle_msgs/srv/GetState"
+        "planner_server/change_state":
+          type: "lifecycle_msgs/srv/ChangeState"
+        "planner_server/get_state":
+          type: "lifecycle_msgs/srv/GetState"
+        "smoother_server/change_state":
+          type: "lifecycle_msgs/srv/ChangeState"
+        "smoother_server/get_state":
+          type: "lifecycle_msgs/srv/GetState"
+        "velocity_smoother/change_state":
+          type: "lifecycle_msgs/srv/ChangeState"
+        "velocity_smoother/get_state":
+          type: "lifecycle_msgs/srv/GetState"
+        "waypoint_follower/change_state":
+          type: "lifecycle_msgs/srv/ChangeState"
+        "waypoint_follower/get_state":
+          type: "lifecycle_msgs/srv/GetState"
+      serviceservers:
+        "~/is_active":
+          type: "std_srvs/srv/Trigger"
+        "~/manage_nodes":
+          type: "nav2_msgs/srv/ManageLifecycleNodes"
+      parameters:
+        "bond_disable_heartbeat_timeout":
+          type: Boolean
+          value: False
+        "attempt_respawn_reconnection":
+          type: Boolean
+          value: True
+        "autostart":
+          type: Boolean
+          value: True
+        "bond_respawn_max_duration":
+          type: Double
+          value: 10.0
+        "bond_timeout":
+          type: Double
+          value: 4.0
+        "diagnostic_updater.period":
+          type: Double
+          value: 1.0
+        "node_names":
+          type: Array [String]
+          value: "['controller_server', 'smoother_server', 'planner_server', 'behavior_server', 'bt_navigator', 'waypoint_follower', 'velocity_smoother']"
+        "qos_overrides./parameter_events.publisher.depth":
+          type: Integer
+          value: 1000
+        "qos_overrides./parameter_events.publisher.durability":
+          type: String
+          value: "volatile"
+        "qos_overrides./parameter_events.publisher.history":
+          type: String
+          value: "keep_last"
+        "qos_overrides./parameter_events.publisher.reliability":
+          type: String
+          value: "reliable"
+        "use_sim_time":
+          type: Boolean
+          value: False

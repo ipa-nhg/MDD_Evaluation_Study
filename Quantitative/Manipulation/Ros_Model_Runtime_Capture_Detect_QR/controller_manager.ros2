@@ -1,0 +1,83 @@
+controller_manager:
+  artifacts:
+    controller_manager: # change to exector name
+      node: controller_manager
+      serviceservers:
+        "~/configure_controller":
+          type: "controller_manager_msgs/srv/ConfigureController"
+        "~/describe_parameters":
+          type: "rcl_interfaces/srv/DescribeParameters"
+        "~/get_parameter_types":
+          type: "rcl_interfaces/srv/GetParameterTypes"
+        "~/get_parameters":
+          type: "rcl_interfaces/srv/GetParameters"
+        "~/list_controller_types":
+          type: "controller_manager_msgs/srv/ListControllerTypes"
+        "~/list_controllers":
+          type: "controller_manager_msgs/srv/ListControllers"
+        "~/list_hardware_components":
+          type: "controller_manager_msgs/srv/ListHardwareComponents"
+        "~/list_hardware_interfaces":
+          type: "controller_manager_msgs/srv/ListHardwareInterfaces"
+        "~/list_parameters":
+          type: "rcl_interfaces/srv/ListParameters"
+        "~/load_controller":
+          type: "controller_manager_msgs/srv/LoadController"
+        "~/reload_controller_libraries":
+          type: "controller_manager_msgs/srv/ReloadControllerLibraries"
+        "~/set_hardware_component_state":
+          type: "controller_manager_msgs/srv/SetHardwareComponentState"
+        "~/set_parameters":
+          type: "rcl_interfaces/srv/SetParameters"
+        "~/set_parameters_atomically":
+          type: "rcl_interfaces/srv/SetParametersAtomically"
+        "~/switch_controller":
+          type: "controller_manager_msgs/srv/SwitchController"
+        "~/unload_controller":
+          type: "controller_manager_msgs/srv/UnloadController"
+      parameters:
+        "force_torque_sensor_broadcaster.type":
+          type: String
+          value: "force_torque_sensor_broadcaster/ForceTorqueSensorBroadcaster"
+        "forward_position_controller.type":
+          type: String
+          value: "position_controllers/JointGroupPositionController"
+        "forward_velocity_controller.type":
+          type: String
+          value: "velocity_controllers/JointGroupVelocityController"
+        "io_and_status_controller.type":
+          type: String
+          value: "ur_controllers/GPIOController"
+        "joint_state_broadcaster.type":
+          type: String
+          value: "joint_state_broadcaster/JointStateBroadcaster"
+        "joint_trajectory_controller.type":
+          type: String
+          value: "joint_trajectory_controller/JointTrajectoryController"
+        "qos_overrides./parameter_events.publisher.depth":
+          type: Integer
+          value: 1000
+        "qos_overrides./parameter_events.publisher.durability":
+          type: String
+          value: "volatile"
+        "qos_overrides./parameter_events.publisher.history":
+          type: String
+          value: "keep_last"
+        "qos_overrides./parameter_events.publisher.reliability":
+          type: String
+          value: "reliable"
+        "robot_description":
+          type: String
+          value: ""
+        "scaled_joint_trajectory_controller.type":
+          type: String
+          value: "ur_controllers/ScaledJointTrajectoryController"
+        "speed_scaling_state_broadcaster.type":
+          type: String
+          value: "ur_controllers/SpeedScalingStateBroadcaster"
+        "update_rate":
+          type: Integer
+          value: 500
+        "use_sim_time":
+          type: Boolean
+          value: False

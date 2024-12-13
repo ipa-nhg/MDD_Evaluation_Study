@@ -1,0 +1,58 @@
+lifecycle_manager_localization:
+  artifacts:
+    lifecycle_manager_localization: # change to exector name
+      node: lifecycle_manager_localization
+      publishers:
+        "diagnostics":
+          type: "diagnostic_msgs/msg/DiagnosticArray"
+      serviceclients:
+        "amcl/change_state":
+          type: "lifecycle_msgs/srv/ChangeState"
+        "amcl/get_state":
+          type: "lifecycle_msgs/srv/GetState"
+        "map_server/change_state":
+          type: "lifecycle_msgs/srv/ChangeState"
+        "map_server/get_state":
+          type: "lifecycle_msgs/srv/GetState"
+      serviceservers:
+        "~/is_active":
+          type: "std_srvs/srv/Trigger"
+        "~/manage_nodes":
+          type: "nav2_msgs/srv/ManageLifecycleNodes"
+      parameters:
+        "bond_disable_heartbeat_timeout":
+          type: Boolean
+          value: False
+        "attempt_respawn_reconnection":
+          type: Boolean
+          value: True
+        "autostart":
+          type: Boolean
+          value: True
+        "bond_respawn_max_duration":
+          type: Double
+          value: 10.0
+        "bond_timeout":
+          type: Double
+          value: 4.0
+        "diagnostic_updater.period":
+          type: Double
+          value: 1.0
+        "node_names":
+          type: Array [String]
+          value: "['map_server', 'amcl']"
+        "qos_overrides./parameter_events.publisher.depth":
+          type: Integer
+          value: 1000
+        "qos_overrides./parameter_events.publisher.durability":
+          type: String
+          value: "volatile"
+        "qos_overrides./parameter_events.publisher.history":
+          type: String
+          value: "keep_last"
+        "qos_overrides./parameter_events.publisher.reliability":
+          type: String
+          value: "reliable"
+        "use_sim_time":
+          type: Boolean
+          value: False

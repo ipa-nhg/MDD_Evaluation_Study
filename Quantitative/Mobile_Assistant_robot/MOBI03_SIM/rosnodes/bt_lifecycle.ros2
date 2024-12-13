@@ -1,0 +1,50 @@
+ros2_behavior_tree_example:
+  artifacts:
+    behavior_tree_example:
+      node: /bt_lifecycle_node
+      publishers:
+        'bt_lifecycle_node/transition_event':
+          type: 'lifecycle_msgs/msg/TransitionEvent'
+          qos:
+          # profile:
+          # history: UNKNOWN
+          # depth:
+            reliability: reliable
+            durability: volatile
+      subscribers:
+        'Yolov8_Inference':
+          type: 'yolov8_msgs/msg/Yolov8Inference'
+      actionclients:
+        'navigate_to_pose':
+          type: 'nav2_msgs/action/NavigateToPose'
+      serviceclients:
+      	'callStdSrvTrigger':
+      	  type: 'std_srvs/srv/Trigger'
+      	'callStdSrvEmpty':
+      	  type: 'std_srvs/srv/Empty'
+      	'sound_play':
+      	  type: 'cob_srvs/srv/SetString'
+      serviceservers:
+        'bt_lifecycle_node/change_state':
+          type: 'lifecycle_msgs/srv/ChangeState'
+        'bt_lifecycle_node/get_available_states':
+          type: 'lifecycle_msgs/srv/GetAvailableStates'
+        'bt_lifecycle_node/get_available_transitions':
+          type: 'lifecycle_msgs/srv/GetAvailableTransitions'
+        'bt_lifecycle_node/get_state':
+          type: 'lifecycle_msgs/srv/GetState'
+        'bt_lifecycle_node/get_transition_graph':
+          type: 'lifecycle_msgs/srv/GetAvailableTransitions'
+      parameters:
+        'rate_hz':
+          type: Double
+          value: 0.5
+        'num_republish':
+          type: Integer
+          value: 10
+        'ping_starter':
+          type: Boolean
+          value: True
+        'behaviortree_file':
+          type: String
+          value: '/home/nhg-yc/bt_ws/src/ros2_behavior_tree_example/behavior_trees/cob_sim/combi_test_with_Navi_sim.xml'

@@ -1,0 +1,43 @@
+map_server:
+  artifacts:
+    map_server: # change to exector name
+      node: map_server
+      publishers:
+        "map":
+          type: "nav_msgs/msg/OccupancyGrid"
+        "~/transition_event":
+          type: "lifecycle_msgs/msg/TransitionEvent"
+      serviceservers:
+        "~/change_state":
+          type: "lifecycle_msgs/srv/ChangeState"
+
+        "~/get_available_states":
+          type: "lifecycle_msgs/srv/GetAvailableStates"
+        "~/get_available_transitions":
+          type: "lifecycle_msgs/srv/GetAvailableTransitions"
+
+        "~/get_state":
+          type: "lifecycle_msgs/srv/GetState"
+        "~/get_transition_graph":
+          type: "lifecycle_msgs/srv/GetAvailableTransitions"
+
+        "~/load_map":
+          type: "nav2_msgs/srv/LoadMap"
+        "~/map":
+          type: "nav_msgs/srv/GetMap"
+      parameters:
+        "bond_disable_heartbeat_timeout":
+          type: Boolean
+          value: True
+        "frame_id":
+          type: String
+          value: "map"
+        "topic_name":
+          type: String
+          value: "map"
+        "use_sim_time":
+          type: Boolean
+          value: False
+        "yaml_filename":
+          type: String
+          value: "/home/nhg/ros2_wss/turtlebot_ws/install/turtlebot3_navigation2/share/turtlebot3_navigation2/map/map.yaml"

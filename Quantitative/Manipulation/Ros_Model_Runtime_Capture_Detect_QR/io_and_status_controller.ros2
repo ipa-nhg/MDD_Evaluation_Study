@@ -1,0 +1,65 @@
+io_and_status_controller:
+  artifacts:
+    io_and_status_controller: # change to exector name
+      node: io_and_status_controller
+      subscribers:
+        "parameter_events":
+          type: "rcl_interfaces/msg/ParameterEvent"
+      publishers:
+        "~/io_states":
+          type: "ur_msgs/msg/IOStates"
+        "~/robot_mode":
+          type: "ur_dashboard_msgs/msg/RobotMode"
+        "~/robot_program_running":
+          type: "std_msgs/msg/Bool"
+        "~/safety_mode":
+          type: "ur_dashboard_msgs/msg/SafetyMode"
+        "~/tool_data":
+          type: "ur_msgs/msg/ToolDataMsg"
+        "~/transition_event":
+          type: "lifecycle_msgs/msg/TransitionEvent"
+        "parameter_events":
+          type: "rcl_interfaces/msg/ParameterEvent"
+        "rosout":
+          type: "rcl_interfaces/msg/Log"
+      serviceservers:
+        "~/describe_parameters":
+          type: "rcl_interfaces/srv/DescribeParameters"
+        "~/get_parameter_types":
+          type: "rcl_interfaces/srv/GetParameterTypes"
+        "~/get_parameters":
+          type: "rcl_interfaces/srv/GetParameters"
+        "~/hand_back_control":
+          type: "std_srvs/srv/Trigger"
+        "~/list_parameters":
+          type: "rcl_interfaces/srv/ListParameters"
+        "~/resend_robot_program":
+          type: "std_srvs/srv/Trigger"
+        "~/set_io":
+          type: "ur_msgs/srv/SetIO"
+        "~/set_parameters":
+          type: "rcl_interfaces/srv/SetParameters"
+        "~/set_parameters_atomically":
+          type: "rcl_interfaces/srv/SetParametersAtomically"
+        "~/set_payload":
+          type: "ur_msgs/srv/SetPayload"
+        "~/set_speed_slider":
+          type: "ur_msgs/srv/SetSpeedSliderFraction"
+        "~/zero_ftsensor":
+          type: "std_srvs/srv/Trigger"
+      parameters:
+        "check_io_successfull_retries":
+          type: Integer
+          value: 10
+        "robot_description":
+          type: String
+          value: ""
+        "tf_prefix":
+          type: String
+          value: ""
+        "update_rate":
+          type: Integer
+          value: 0
+        "use_sim_time":
+          type: Boolean
+          value: False

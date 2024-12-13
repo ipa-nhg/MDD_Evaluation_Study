@@ -1,0 +1,40 @@
+gazebo:
+  artifacts:
+    gazebo: # change to exector name
+      node: gazebo
+      publishers:
+        "performance_metrics":
+          type: "gazebo_msgs/msg/PerformanceMetrics"
+      serviceservers:
+        "apply_joint_effort":
+          type: "gazebo_msgs/srv/ApplyJointEffort"
+        "apply_link_wrench":
+          type: "gazebo_msgs/srv/ApplyLinkWrench"
+        "clear_joint_efforts":
+          type: "gazebo_msgs/srv/JointRequest"
+        "clear_link_wrenches":
+          type: "gazebo_msgs/srv/LinkRequest"
+        "delete_entity":
+          type: "gazebo_msgs/srv/DeleteEntity"
+        "get_model_list":
+          type: "gazebo_msgs/srv/GetModelList"
+        "pause_physics":
+          type: "std_srvs/srv/Empty"
+        "reset_simulation":
+          type: "std_srvs/srv/Empty"
+        "reset_world":
+          type: "std_srvs/srv/Empty"
+        "spawn_entity":
+          type: "gazebo_msgs/srv/SpawnEntity"
+        "unpause_physics":
+          type: "std_srvs/srv/Empty"
+      parameters:
+        "enable_performance_metrics":
+          type: Boolean
+          value: True
+        "publish_rate":
+          type: Double
+          value: 10.0
+        "use_sim_time":
+          type: Boolean
+          value: True

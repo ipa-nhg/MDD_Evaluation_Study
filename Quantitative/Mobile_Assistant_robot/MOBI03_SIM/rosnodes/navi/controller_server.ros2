@@ -1,0 +1,313 @@
+controller_server:
+  artifacts:
+    controller_server: # change to exector name
+      node: controller_server
+      subscribers:
+        "odom":
+          type: "nav_msgs/msg/Odometry"
+        "speed_limit":
+          type: "nav2_msgs/msg/SpeedLimit"
+      publishers:
+        "cmd_vel_nav":
+          type: "geometry_msgs/msg/Twist"
+        "~/transition_event":
+          type: "lifecycle_msgs/msg/TransitionEvent"
+        "cost_cloud":
+          type: "sensor_msgs/msg/PointCloud2"
+        "evaluation":
+          type: "dwb_msgs/msg/LocalPlanEvaluation"
+        "local_plan":
+          type: "nav_msgs/msg/Path"
+        "marker":
+          type: "visualization_msgs/msg/MarkerArray"
+
+        "received_global_plan":
+          type: "nav_msgs/msg/Path"
+
+        "transformed_global_plan":
+          type: "nav_msgs/msg/Path"
+      serviceservers:
+        "~/change_state":
+          type: "lifecycle_msgs/srv/ChangeState"
+
+        "~/get_available_states":
+          type: "lifecycle_msgs/srv/GetAvailableStates"
+        "~/get_available_transitions":
+          type: "lifecycle_msgs/srv/GetAvailableTransitions"
+
+        "~/get_state":
+          type: "lifecycle_msgs/srv/GetState"
+        "~/get_transition_graph":
+          type: "lifecycle_msgs/srv/GetAvailableTransitions"
+
+      actionservers:
+        "follow_path":
+          type: "nav2_msgs/action/FollowPath"
+      parameters:
+        "bond_disable_heartbeat_timeout":
+          type: Boolean
+          value: True
+        "FollowPath.BaseObstacle.class":
+          type: String
+          value: "BaseObstacle"
+        "FollowPath.BaseObstacle.scale":
+          type: Double
+          value: 0.02
+        "FollowPath.BaseObstacle.sum_scores":
+          type: Boolean
+          value: False
+        "FollowPath.GoalAlign.aggregation_type":
+          type: String
+          value: "last"
+        "FollowPath.GoalAlign.class":
+          type: String
+          value: "GoalAlign"
+        "FollowPath.GoalAlign.forward_point_distance":
+          type: Double
+          value: 0.1
+        "FollowPath.GoalAlign.scale":
+          type: Double
+          value: 24.0
+        "FollowPath.GoalDist.aggregation_type":
+          type: String
+          value: "last"
+        "FollowPath.GoalDist.class":
+          type: String
+          value: "GoalDist"
+        "FollowPath.GoalDist.scale":
+          type: Double
+          value: 24.0
+        "FollowPath.Oscillation.class":
+          type: String
+          value: "Oscillation"
+        "FollowPath.Oscillation.oscillation_reset_angle":
+          type: Double
+          value: 0.2
+        "FollowPath.Oscillation.oscillation_reset_dist":
+          type: Double
+          value: 0.05
+        "FollowPath.Oscillation.oscillation_reset_time":
+          type: Double
+          value: -1.0
+        "FollowPath.Oscillation.scale":
+          type: Double
+          value: 1.0
+        "FollowPath.Oscillation.x_only_threshold":
+          type: Double
+          value: 0.05
+        "FollowPath.PathAlign.aggregation_type":
+          type: String
+          value: "last"
+        "FollowPath.PathAlign.class":
+          type: String
+          value: "PathAlign"
+        "FollowPath.PathAlign.forward_point_distance":
+          type: Double
+          value: 0.1
+        "FollowPath.PathAlign.scale":
+          type: Double
+          value: 32.0
+        "FollowPath.PathDist.aggregation_type":
+          type: String
+          value: "last"
+        "FollowPath.PathDist.class":
+          type: String
+          value: "PathDist"
+        "FollowPath.PathDist.scale":
+          type: Double
+          value: 32.0
+        "FollowPath.RotateToGoal.class":
+          type: String
+          value: "RotateToGoal"
+        "FollowPath.RotateToGoal.lookahead_time":
+          type: Double
+          value: -1.0
+        "FollowPath.RotateToGoal.scale":
+          type: Double
+          value: 32.0
+        "FollowPath.RotateToGoal.slowing_factor":
+          type: Double
+          value: 5.0
+        "FollowPath.acc_lim_theta":
+          type: Double
+          value: 3.2
+        "FollowPath.acc_lim_x":
+          type: Double
+          value: 2.5
+        "FollowPath.acc_lim_y":
+          type: Double
+          value: 0.0
+        "FollowPath.angular_granularity":
+          type: Double
+          value: 0.025
+        "FollowPath.critics":
+          type: Array [String]
+          value: "['RotateToGoal', 'Oscillation', 'BaseObstacle', 'GoalAlign', 'PathAlign', 'PathDist', 'GoalDist']"
+        "FollowPath.debug_trajectory_details":
+          type: Boolean
+          value: True
+        "FollowPath.decel_lim_theta":
+          type: Double
+          value: -3.2
+        "FollowPath.decel_lim_x":
+          type: Double
+          value: -2.5
+        "FollowPath.decel_lim_y":
+          type: Double
+          value: 0.0
+        "FollowPath.default_critic_namespaces":
+          type: Array [String]
+          value: "[]"
+        "FollowPath.discretize_by_time":
+          type: Boolean
+          value: False
+        "FollowPath.forward_prune_distance":
+          type: Double
+          value: 2.0
+        "FollowPath.include_last_point":
+          type: Boolean
+          value: True
+        "FollowPath.linear_granularity":
+          type: Double
+          value: 0.05
+        "FollowPath.marker_lifetime":
+          type: Double
+          value: 0.1
+        "FollowPath.max_speed_xy":
+          type: Double
+          value: 0.22
+        "FollowPath.max_vel_theta":
+          type: Double
+          value: 1.0
+        "FollowPath.max_vel_x":
+          type: Double
+          value: 0.22
+        "FollowPath.max_vel_y":
+          type: Double
+          value: 0.0
+        "FollowPath.min_speed_theta":
+          type: Double
+          value: 0.0
+        "FollowPath.min_speed_xy":
+          type: Double
+          value: 0.0
+        "FollowPath.min_vel_x":
+          type: Double
+          value: 0.0
+        "FollowPath.min_vel_y":
+          type: Double
+          value: 0.0
+        "FollowPath.plugin":
+          type: String
+          value: "dwb_core::DWBLocalPlanner"
+        "FollowPath.prune_distance":
+          type: Double
+          value: 2.0
+        "FollowPath.prune_plan":
+          type: Boolean
+          value: True
+        "FollowPath.publish_cost_grid_pc":
+          type: Boolean
+          value: False
+        "FollowPath.publish_evaluation":
+          type: Boolean
+          value: True
+        "FollowPath.publish_global_plan":
+          type: Boolean
+          value: True
+        "FollowPath.publish_local_plan":
+          type: Boolean
+          value: True
+        "FollowPath.publish_trajectories":
+          type: Boolean
+          value: True
+        "FollowPath.publish_transformed_plan":
+          type: Boolean
+          value: True
+        "FollowPath.short_circuit_trajectory_evaluation":
+          type: Boolean
+          value: True
+        "FollowPath.shorten_transformed_plan":
+          type: Boolean
+          value: True
+        "FollowPath.sim_time":
+          type: Double
+          value: 2.0
+        "FollowPath.time_granularity":
+          type: Double
+          value: 0.5
+        "FollowPath.trajectory_generator_name":
+          type: String
+          value: "dwb_plugins::StandardTrajectoryGenerator"
+        "FollowPath.trans_stopped_velocity":
+          type: Double
+          value: 0.25
+        "FollowPath.transform_tolerance":
+          type: Double
+          value: 0.2
+        "FollowPath.vtheta_samples":
+          type: Integer
+          value: 40
+        "FollowPath.vx_samples":
+          type: Integer
+          value: 20
+        "FollowPath.vy_samples":
+          type: Integer
+          value: 0
+        "FollowPath.xy_goal_tolerance":
+          type: Double
+          value: 0.05
+        "controller_frequency":
+          type: Double
+          value: 10.0
+        "controller_plugins":
+          type: Array [String]
+          value: "['FollowPath']"
+        "failure_tolerance":
+          type: Double
+          value: 0.3
+        "general_goal_checker.plugin":
+          type: String
+          value: "nav2_controller::SimpleGoalChecker"
+        "general_goal_checker.stateful":
+          type: Boolean
+          value: True
+        "general_goal_checker.xy_goal_tolerance":
+          type: Double
+          value: 0.25
+        "general_goal_checker.yaw_goal_tolerance":
+          type: Double
+          value: 0.25
+        "goal_checker_plugins":
+          type: Array [String]
+          value: "['general_goal_checker']"
+        "min_theta_velocity_threshold":
+          type: Double
+          value: 0.001
+        "min_x_velocity_threshold":
+          type: Double
+          value: 0.001
+        "min_y_velocity_threshold":
+          type: Double
+          value: 0.5
+        "odom_topic":
+          type: String
+          value: "odom"
+        "progress_checker.movement_time_allowance":
+          type: Double
+          value: 10.0
+        "progress_checker.plugin":
+          type: String
+          value: "nav2_controller::SimpleProgressChecker"
+        "progress_checker.required_movement_radius":
+          type: Double
+          value: 0.5
+        "progress_checker_plugin":
+          type: String
+          value: "progress_checker"
+        "speed_limit_topic":
+          type: String
+          value: "speed_limit"
+        "use_sim_time":
+          type: Boolean
+          value: False

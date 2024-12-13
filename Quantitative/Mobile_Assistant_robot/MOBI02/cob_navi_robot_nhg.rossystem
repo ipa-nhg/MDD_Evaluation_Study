@@ -1,0 +1,185 @@
+cob_navi_robot:
+  subSystems:
+    cob4_bringup
+    launch_visual
+    cob_nav2
+  nodes:
+    joy_node:
+      from: "joy.joy_node"
+      interfaces:
+        - joy_pub: pub-> "joy_node::joy"
+      parameters:
+      	- autorepeat_rate: "joy_node::autorepeat_rate"
+      	  value: 20.0
+      	- deadzone: "joy_node::deadzone"
+      	  value: 0.3
+      	- joy_dev: "joy_node::joy_dev"
+      	  value: "/dev/input/js0"
+    twist_mux:
+      from: "twist_mux.twist_mux"
+      interfaces:
+        - '/base/twist_controller/command': pub-> "twist_mux::cmd_vel_out"
+        - cmd_vel_sub: sub-> "twist_mux::cmd_vel"
+      parameters:
+		- "topics.navigation.topic": "twist_mux::topics.navigation.topic"
+		  value: "cmd_vel"
+		- "topics.navigation.timeout": "twist_mux::topics.navigation.timeout"
+		  value: 0.5
+		- "topics.navigation.priority": "twist_mux::topics.navigation.priority"
+		  value: 10		
+		- "topics.tracker.topic": "twist_mux::topics.tracker.topic"
+		  value: "cmd_vel_tracker"
+		- "topics.tracker.timeout": "twist_mux::topics.tracker.timeout"
+		  value: 0.5
+		- "topics.tracker.priority": "twist_mux::topics.tracker.priority"
+		  value: 20		
+		- "topics.joystick.topic": "twist_mux::topics.joystick.topic"
+		  value: "cmd_vel"
+		- "topics.joystick.timeout": "twist_mux::topics.joystick.timeout"
+		  value: 0.5
+		- "topics.joystick.priority": "twist_mux::topics.joystick.priority"
+		  value: 100		
+    teleop_twist_joy_node:
+  		from: "teleop_twist_joy.teleop_node"
+  		interfaces:
+  			- joy: sub-> "teleop_node::joy"
+  			- cmd_vel: pub-> "teleop_node::cmd_vel"
+  		parameters:
+			- enable_button: "teleop_node::enable_button"
+			  value: 2
+			- enable_turbo_button: "teleop_node::enable_turbo_button"
+			  value: 5
+			- "axis_angular.yaw": "teleop_node::axis_angular.yaw"
+			  value: 0
+			- "scale_angular.yaw": "teleop_node::scale_angular.yaw"
+			  value: 0.4
+			- "axis_linear.x": "teleop_node::axis_linear.x"
+  			  value: 1
+			- "scale_linear.x": "teleop_node::scale_linear.x"
+  			  value: 0.3
+			- "scale_linear_turbo.x": "teleop_node::scale_linear_turbo.x"
+  			  value: 0.6
+    slam_toolbox:
+      from: "slam_toolbox.slam_toolbox"
+      interfaces:
+			- map_sub_slamtb: sub-> "async_slam_toolbox_node::map"
+			- scan_sub: sub-> "async_slam_toolbox_node::scan"
+			- map: pub-> "async_slam_toolbox_node::map"
+			- tf: pub-> "async_slam_toolbox_node::tf"
+      parameters:
+		  - "solver_plugin": "async_slam_toolbox_node::solver_plugin"
+		    value: "solver_plugins::CeresSolver"
+		  - "ceres_linear_solver": "async_slam_toolbox_node::ceres_linear_solver"
+		    value: "SPARSE_NORMAL_CHOLESKY"
+		  - "ceres_preconditioner": "async_slam_toolbox_node::ceres_preconditioner"
+		    value: "SCHUR_JACOBI"
+		  - "ceres_trust_strategy": "async_slam_toolbox_node::ceres_trust_strategy"
+		    value: "LEVENBERG_MARQUARDT"
+		  - "ceres_dogleg_type": "async_slam_toolbox_node::ceres_dogleg_type"
+		    value: "TRADITIONAL_DOGLEG"
+		  - "ceres_loss_function": "async_slam_toolbox_node::ceres_loss_function"
+		    value: "None"
+		  - "odom_frame": "async_slam_toolbox_node::odom_frame"
+		    value: "odom_combined"
+		  - "map_frame": "async_slam_toolbox_node::map_frame"
+		    value: "map"
+		  - "base_frame": "async_slam_toolbox_node::base_frame"
+		    value: "base_footprint"
+		  - "scan_topic": "async_slam_toolbox_node::scan_topic"
+		    value: "/scan_unified"
+		  - "mode": "async_slam_toolbox_node::mode"
+		    value: "mapping"
+		  - "map_file_name": "async_slam_toolbox_node::map_file_name"
+		    value: "/home/nhg-yc/ros2_ws/tricycle_ws/cob_map_0410"
+		  - "map_start_at_dock": "async_slam_toolbox_node::map_start_at_dock"
+		    value: true
+		  - "debug_logging": "async_slam_toolbox_node::debug_logging"
+		    value: false
+		  - "throttle_scans": "async_slam_toolbox_node::throttle_scans"
+		    value: 1
+		  - "transform_publish_period": "async_slam_toolbox_node::transform_publish_period"
+		    value: 0.02
+		  - "map_update_interval": "async_slam_toolbox_node::map_update_interval"
+		    value: 5.0
+		  - "resolution": "async_slam_toolbox_node::resolution"
+		    value: 0.05
+		  - "max_laser_range": "async_slam_toolbox_node::max_laser_range"
+		    value: 29.5
+		  - "minimum_time_interval": "async_slam_toolbox_node::minimum_time_interval"
+		    value: 0.5
+		  - "transform_timeout": "async_slam_toolbox_node::transform_timeout"
+		    value: 0.2
+		  - "tf_buffer_duration": "async_slam_toolbox_node::tf_buffer_duration"
+		    value: 30.0
+		  - "stack_size_to_use": "async_slam_toolbox_node::stack_size_to_use"
+		    value: 40000000
+		  - "enable_interactive_mode": "async_slam_toolbox_node::enable_interactive_mode"
+		    value: true
+		  - "use_scan_matching": "async_slam_toolbox_node::use_scan_matching"
+		    value: true
+		  - "use_scan_barycenter": "async_slam_toolbox_node::use_scan_barycenter"
+		    value: true
+		  - "minimum_travel_distance": "async_slam_toolbox_node::minimum_travel_distance"
+		    value: 0.5
+		  - "minimum_travel_heading": "async_slam_toolbox_node::minimum_travel_heading"
+		    value: 0.5
+		  - "scan_buffer_size": "async_slam_toolbox_node::scan_buffer_size"
+		    value: 10
+		  - "scan_buffer_maximum_scan_distance": "async_slam_toolbox_node::scan_buffer_maximum_scan_distance"
+		    value: 10.0
+		  - "link_match_minimum_response_fine": "async_slam_toolbox_node::link_match_minimum_response_fine"
+		    value: 0.1
+		  - "link_scan_maximum_distance": "async_slam_toolbox_node::link_scan_maximum_distance"
+		    value: 1.5
+		  - "loop_search_maximum_distance": "async_slam_toolbox_node::loop_search_maximum_distance"
+		    value: 3.0
+		  - "do_loop_closing": "async_slam_toolbox_node::do_loop_closing"
+		    value: true
+		  - "loop_match_minimum_chain_size": "async_slam_toolbox_node::loop_match_minimum_chain_size"
+		    value: 10
+		  - "loop_match_maximum_variance_coarse": "async_slam_toolbox_node::loop_match_maximum_variance_coarse"
+		    value: 3.0
+		  - "loop_match_minimum_response_coarse": "async_slam_toolbox_node::loop_match_minimum_response_coarse"
+		    value: 0.35
+		  - "loop_match_minimum_response_fine": "async_slam_toolbox_node::loop_match_minimum_response_fine"
+		    value: 0.45
+		  - "correlation_search_space_dimension": "async_slam_toolbox_node::correlation_search_space_dimension"
+		    value: 0.5
+		  - "correlation_search_space_resolution": "async_slam_toolbox_node::correlation_search_space_resolution"
+		    value: 0.01
+		  - "correlation_search_space_smear_deviation": "async_slam_toolbox_node::correlation_search_space_smear_deviation"
+		    value: 0.1
+		  - "loop_search_space_dimension": "async_slam_toolbox_node::loop_search_space_dimension"
+		    value: 8.0
+		  - "loop_search_space_resolution": "async_slam_toolbox_node::loop_search_space_resolution"
+		    value: 0.05
+		  - "loop_search_space_smear_deviation": "async_slam_toolbox_node::loop_search_space_smear_deviation"
+		    value: 0.03
+		  - "distance_variance_penalty": "async_slam_toolbox_node::distance_variance_penalty"
+		    value: 0.5
+		  - "angle_variance_penalty": "async_slam_toolbox_node::angle_variance_penalty"
+		    value: 1.0
+		  - "fine_search_angle_offset": "async_slam_toolbox_node::fine_search_angle_offset"
+		    value: 0.00349
+		  - "coarse_search_angle_offset": "async_slam_toolbox_node::coarse_search_angle_offset"
+		    value: 0.349
+		  - "coarse_angle_resolution": "async_slam_toolbox_node::coarse_angle_resolution"
+		    value: 0.0349
+		  - "minimum_angle_penalty": "async_slam_toolbox_node::minimum_angle_penalty"
+		    value: 0.9
+		  - "minimum_distance_penalty": "async_slam_toolbox_node::minimum_distance_penalty"
+		    value: 0.5
+		  - "use_response_expansion": "async_slam_toolbox_node::use_response_expansion"
+		    value: true
+  connections:
+  	- [ joy_pub , joy ]
+  	- [ cmd_vel , cmd_vel_sub]
+  	- ['/base/twist_controller/command', "/base/twist_controller/command_ros1_sub"]
+  	- [ 'scan_unified_ros1' , scan_sub]
+  	- [ joint_states_ros1_pub, joint_states ]
+  	- [ 'tf_ros1_pub' , tf_sub ]
+  	- [ 'tf_static_ros1_pub', tf_static_sub ]
+  	- [ map, map_sub_slamtb ]
+  	- [ map , map_sub ]
+    
+    

@@ -1,0 +1,16 @@
+image_transport:
+  artifacts:
+    republish:
+      node: /image_transport_republish
+      publishers:
+        'cam_left/decompressed':
+          type: 'sensor_msgs/msg/Image'
+          qos:
+          # profile:
+          # history: UNKNOWN
+          # depth:
+            reliability: reliable
+            durability: volatile
+      subscribers:
+        '/torso_cam3d_left_upright/rgb/image_raw/compressed':
+          type: 'sensor_msgs/msg/CompressedImage'

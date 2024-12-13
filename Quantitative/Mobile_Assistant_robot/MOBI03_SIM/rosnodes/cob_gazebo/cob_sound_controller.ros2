@@ -1,0 +1,7 @@
+cob_sound_controller:
+  artifacts:
+    sound_controller:
+      node: /sound_controller
+      serviceservers:
+        'sound_play':
+          type: 'cob_srvs/srv/SetString'

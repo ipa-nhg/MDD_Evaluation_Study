@@ -1,0 +1,12 @@
+yolobot_recognition:
+  artifacts:
+    yolov8_ros2_pt:
+      node: yolov8_node
+      publishers:
+        'Yolov8_Inference':
+          type: 'yolov8_msgs/msg/Yolov8Inference'
+        'inference_result':
+          type: 'yolov8_msgs/msg/InferenceResult'
+      subscribers:
+       'yolo_image_input':
+        type: 'sensor_msgs/msg/Image'

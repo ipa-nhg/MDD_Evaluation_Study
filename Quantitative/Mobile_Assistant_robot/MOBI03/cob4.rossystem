@@ -1,0 +1,19 @@
+cob4_bringup:
+  nodes:
+    base_driver_ros1:
+      from: "base_driver.base_driver"
+      interfaces:
+        - '/base/twist_controller/command_ros1_sub': sub-> "base_driver::/base/twist_controller/command"
+    scan_unifier_ros1:
+      from: "scan_unifier.scan_unifier"
+      interfaces:
+        - 'scan_unified_ros1': pub-> "scan_unifier::/scan_unified"
+    joint_state_publisher_ros1:
+      from: "joint_state_publisher.joint_state_publisher"
+      interfaces:
+       - 'joint_states_ros1_pub': pub->"joint_state_publisher::/joint_states"
+    robot_state_publisher_ros1:
+      from: "robot_state_publisher.robot_state_publisher_ros1"
+      interfaces:
+       - 'tf_ros1_pub': pub->"robot_state_publisher::tf"
+       - 'tf_static_ros1_pub': pub->"robot_state_publisher::tf_static"

@@ -1,0 +1,45 @@
+speed_scaling_state_broadcaster:
+  artifacts:
+    speed_scaling_state_broadcaster: # change to exector name
+      node: speed_scaling_state_broadcaster
+      subscribers:
+        "parameter_events":
+          type: "rcl_interfaces/msg/ParameterEvent"
+      publishers:
+        "parameter_events":
+          type: "rcl_interfaces/msg/ParameterEvent"
+        "rosout":
+          type: "rcl_interfaces/msg/Log"
+        "~/speed_scaling":
+          type: "std_msgs/msg/Float64"
+        "~/transition_event":
+          type: "lifecycle_msgs/msg/TransitionEvent"
+      serviceservers:
+        "~/describe_parameters":
+          type: "rcl_interfaces/srv/DescribeParameters"
+        "~/get_parameter_types":
+          type: "rcl_interfaces/srv/GetParameterTypes"
+        "~/get_parameters":
+          type: "rcl_interfaces/srv/GetParameters"
+        "~/list_parameters":
+          type: "rcl_interfaces/srv/ListParameters"
+        "~/set_parameters":
+          type: "rcl_interfaces/srv/SetParameters"
+        "~/set_parameters_atomically":
+          type: "rcl_interfaces/srv/SetParametersAtomically"
+      parameters:
+        "robot_description":
+          type: String
+          value: ""
+        "state_publish_rate":
+          type: Double
+          value: 100.0
+        "tf_prefix":
+          type: String
+          value: ""
+        "update_rate":
+          type: Integer
+          value: 0
+        "use_sim_time":
+          type: Boolean
+          value: False

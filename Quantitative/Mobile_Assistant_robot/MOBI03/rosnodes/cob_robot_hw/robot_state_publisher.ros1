@@ -1,0 +1,26 @@
+robot_state_publisher:
+  artifacts:
+    robot_state_publisher: # change to exector name
+      node: robot_state_publisher_ros1
+      publishers:
+        "robot_description":
+          type: "std_msgs/msg/String"
+        "tf":
+          type: "tf2_msgs/msg/TFMessage"
+        "tf_static":
+          type: "tf2_msgs/msg/TFMessage"
+      parameters:
+        "frame_prefix":
+          type: String
+          value: ""
+        "ignore_timestamp":
+          type: Boolean
+          value: False
+        "publish_frequency":
+          type: Double
+          value: 20.0
+        "robot_description":
+          type: String
+        "use_sim_time":
+          type: Boolean
+          value: True

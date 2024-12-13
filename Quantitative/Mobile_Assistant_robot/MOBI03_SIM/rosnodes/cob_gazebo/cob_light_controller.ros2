@@ -1,0 +1,7 @@
+cob_light_controller:
+  artifacts:
+    light_controller:
+      node: /light_controller
+      serviceservers:
+        'set_Light_color':
+          type: 'std_srvs/srv/Trigger'

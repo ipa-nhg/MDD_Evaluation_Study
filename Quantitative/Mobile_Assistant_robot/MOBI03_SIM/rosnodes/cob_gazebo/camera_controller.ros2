@@ -1,0 +1,148 @@
+camera_controller:
+  artifacts:
+    camera_controller:
+      node: /cam_ns/cam_frame_controller
+      publishers:
+        'cam/depth/camera_info':
+          type: 'sensor_msgs/msg/CameraInfo'
+          qos:
+          # profile:
+          # history: UNKNOWN
+          # depth:
+            reliability: reliable
+            durability: volatile
+        'cam/depth/image_raw':
+          type: 'sensor_msgs/msg/Image'
+          qos:
+          # profile:
+          # history: UNKNOWN
+          # depth:
+            reliability: reliable
+            durability: volatile
+        'cam/depth/image_raw/compressed':
+          type: 'sensor_msgs/msg/CompressedImage'
+          qos:
+          # profile:
+          # history: UNKNOWN
+          # depth:
+            reliability: reliable
+            durability: volatile
+        'cam/depth/image_raw/compressedDepth':
+          type: 'sensor_msgs/msg/CompressedImage'
+          qos:
+          # profile:
+          # history: UNKNOWN
+          # depth:
+            reliability: reliable
+            durability: volatile
+        'cam/depth/image_raw/theora':
+          type: 'theora_image_transport/msg/Packet'
+          qos:
+          # profile:
+          # history: UNKNOWN
+          # depth:
+            reliability: reliable
+            durability: volatile
+        'cam/image_raw/compressed':
+          type: 'sensor_msgs/msg/CompressedImage'
+          qos:
+          # profile:
+          # history: UNKNOWN
+          # depth:
+            reliability: reliable
+            durability: volatile
+        'cam/image_raw/compressedDepth':
+          type: 'sensor_msgs/msg/CompressedImage'
+          qos:
+          # profile:
+          # history: UNKNOWN
+          # depth:
+            reliability: reliable
+            durability: volatile
+        'cam/image_raw/theora':
+          type: 'theora_image_transport/msg/Packet'
+          qos:
+          # profile:
+          # history: UNKNOWN
+          # depth:
+            reliability: reliable
+            durability: volatile
+        'cam/points':
+          type: 'sensor_msgs/msg/PointCloud2'
+          qos:
+          # profile:
+          # history: UNKNOWN
+          # depth:
+            reliability: reliable
+            durability: volatile
+        'cam/rgb/camera_info':
+          type: 'sensor_msgs/msg/CameraInfo'
+          qos:
+          # profile:
+          # history: UNKNOWN
+          # depth:
+            reliability: reliable
+            durability: volatile
+        'cam/rgb/image_raw':
+          type: 'sensor_msgs/msg/Image'
+          qos:
+          # profile:
+          # history: UNKNOWN
+          # depth:
+            reliability: reliable
+            durability: volatile
+      subscribers:
+        '':
+          type: 'rosgraph_msgs/msg/Clock'
+      serviceservers:
+        'set_camera_info':
+          type: 'sensor_msgs/srv/SetCameraInfo'
+      parameters:
+        '.cam.depth.image_raw.format':
+          type: String
+          value: "jpeg"
+        '.cam.depth.image_raw.jpeg_quality':
+          type: Integer
+          value: 95
+        '.cam.depth.image_raw.png_level':
+          type: Integer
+          value: 3
+        '.cam.depth.image_raw.tiff.res_unit':
+          type: String
+          value: "inch"
+        '.cam.depth.image_raw.tiff.xdpi':
+          type: Integer
+          value: -1
+        '.cam.depth.image_raw.tiff.ydpi':
+          type: Integer
+          value: -1
+        '.cam.image_raw.format':
+          type: String
+          value: "jpeg"
+        '.cam.image_raw.jpeg_quality':
+          type: Integer
+          value: 95
+        '.cam.image_raw.png_level':
+          type: Integer
+          value: 3
+        '.cam.image_raw.tiff.res_unit':
+          type: String
+          value: "inch"
+        '.cam.image_raw.tiff.xdpi':
+          type: Integer
+          value: -1
+        '.cam.image_raw.tiff.ydpi':
+          type: Integer
+          value: -1
+        'cam.depth.image_raw.enable_pub_plugins':
+          type: Array[String]
+          value: ['image_transport/compressedDepth', 'image_transport/compressed', 'image_transport/raw', 'image_transport/theora']
+        'cam.image_raw.enable_pub_plugins':
+          type: Array[String]
+          value: ['image_transport/compressedDepth', 'image_transport/compressed', 'image_transport/raw', 'image_transport/theora']
+        'update_rate':
+          type: Double
+          value: 14.999999925000001
+        'use_sim_time':
+          type: Boolean
+          value: true

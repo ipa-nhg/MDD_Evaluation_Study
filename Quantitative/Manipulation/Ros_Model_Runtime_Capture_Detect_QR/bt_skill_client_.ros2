@@ -1,0 +1,9 @@
+bt_skill_client_:
+  artifacts:
+    bt_skill_client_: # change to exector name
+      node: bt_skill_client_
+      actionclients:
+        "compute_path_to_pose":
+          type: "man2_msgs/action/ComputePathToPose"
+        "execute_trajectory":
+          type: "man2_msgs/action/ExecuteTrajectory"

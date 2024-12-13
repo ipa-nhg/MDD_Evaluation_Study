@@ -1,0 +1,35 @@
+cob_gazebo:
+  fromFile: "cob_sim/launch/cob_gazebo_0429.launch.py"
+  nodes:
+    gazebo:
+      from: "gazebo.gazebo" 
+    robot_state_publisher:
+      from: "robot_state_publisher.robot_state_publisher"
+      interfaces:
+        - joint_states: sub-> "robot_state_publisher::joint_states"
+        - tf: pub-> "robot_state_publisher::tf"
+        - tf_static: pub-> "robot_state_publisher::tf_static"
+    cob_joint_state:
+      from: "cob_joint_state.cob_joint_state"
+      interfaces:
+        - joint_states: pub-> "cob_joint_state::joint_states"
+#    turtlebot3_diff_drive:
+#      from: "turtlebot3_diff_drive.turtlebot3_diff_drive"
+#      interfaces:
+#        - cmd_vel_diff: sub->"turtlebot3_diff_drive::cmd_vel"
+#        - tf: pub->"turtlebot3_diff_drive::tf"
+#        - odom_diff: pub->"turtlebot3_diff_drive::odom"
+#    turtlebot3_imu:
+#      from: "turtlebot3_imu.turtlebot3_imu"
+#      interfaces:
+#        - imu: pub-> "turtlebot3_imu::imu"
+#    camera_driver:
+#      from: "camera_driver.camera_driver"
+#      interfaces:
+#        - camera_info: pub-> "camera_driver::camera/camera_info"
+#        - image_raw: pub-> "camera_driver::camera/image_raw"
+#        - set_camera_info: ss-> "camera_driver::set_camera_info"
+#    turtlebot3_laserscan:
+#      from: "turtlebot3_laserscan.turtlebot3_laserscan"
+#      interfaces:
+#        - scan_turtlebot: pub-> "turtlebot3_laserscan::scan"

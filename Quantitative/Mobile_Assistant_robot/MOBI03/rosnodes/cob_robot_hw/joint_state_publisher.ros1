@@ -1,0 +1,12 @@
+joint_state_publisher:
+  artifacts:
+    joint_state_publisher:
+      node: joint_state_publisher
+      publishers:
+        '/joint_states':
+          type: 'sensor_msgs/msg/JointState'
+      subscribers:
+        '/base/joint_states':
+          type: 'sensor_msgs/msg/JointState'
+        '/torso/joint_states':
+          type: 'sensor_msgs/msg/JointState'

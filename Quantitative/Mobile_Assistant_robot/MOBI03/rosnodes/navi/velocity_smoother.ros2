@@ -1,0 +1,69 @@
+velocity_smoother:
+  artifacts:
+    velocity_smoother: # change to exector name
+      node: velocity_smoother
+      subscribers:
+        "cmd_vel_nav":
+          type: "geometry_msgs/msg/Twist"
+
+      publishers:
+        "cmd_vel":
+          type: "geometry_msgs/msg/Twist"
+
+
+        "~/transition_event":
+          type: "lifecycle_msgs/msg/TransitionEvent"
+      serviceservers:
+        "~/change_state":
+          type: "lifecycle_msgs/srv/ChangeState"
+
+        "~/get_available_states":
+          type: "lifecycle_msgs/srv/GetAvailableStates"
+        "~/get_available_transitions":
+          type: "lifecycle_msgs/srv/GetAvailableTransitions"
+
+        "~/get_state":
+          type: "lifecycle_msgs/srv/GetState"
+        "~/get_transition_graph":
+          type: "lifecycle_msgs/srv/GetAvailableTransitions"
+
+      parameters:
+        "bond_disable_heartbeat_timeout":
+          type: Boolean
+          value: True
+        "deadband_velocity":
+          type: Array [Double]
+          value: [0.0, 0.0, 0.0]
+        "feedback":
+          type: String
+          value: "OPEN_LOOP"
+        "max_accel":
+          type: Array [Double]
+          value: [2.5, 0.0, 3.2]
+        "max_decel":
+          type: Array [Double]
+          value: [-2.5, 0.0, -3.2]
+        "max_velocity":
+          type: Array [Double]
+          value: [0.5, 0.0, 2.5]
+        "min_velocity":
+          type: Array [Double]
+          value: [-0.5, 0.0, -2.5]
+        "odom_duration":
+          type: Double
+          value: 0.1
+        "odom_topic":
+          type: String
+          value: "odom"
+        "scale_velocities":
+          type: Boolean
+          value: False
+        "smoothing_frequency":
+          type: Double
+          value: 20.0
+        "use_sim_time":
+          type: Boolean
+          value: False
+        "velocity_timeout":
+          type: Double
+          value: 1.0

@@ -1,0 +1,15 @@
+scan_unifier:
+  artifacts:
+    scan_unifier:
+      node: scan_unifier
+      publishers:
+        '/scan_unified':
+          type: 'sensor_msgs/msg/LaserScan'
+      subscribers:
+        '/base_laser_front/scan':
+          type: 'sensor_msgs/msg/LaserScan'
+        '/base_laser_right/scan':
+          type: 'sensor_msgs/msg/LaserScan'
+        '/base_laser_left/scan':
+          type: 'sensor_msgs/msg/LaserScan'
+  	  		

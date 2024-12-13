@@ -1,0 +1,115 @@
+tricycle_controller:
+  artifacts:
+    tricycle_controller:
+      node: tricycle_controller
+      publishers:
+        'tf':
+          type: 'tf2_msgs/msg/TFMessage'
+          qos:
+          # profile:
+          # history: UNKNOWN
+          # depth:
+            reliability: reliable
+            durability: transient_local
+        'tricycle_controller/cmd_ackermann':
+          type: 'ackermann_msgs/msg/AckermannDrive'
+          qos:
+          # profile:
+          # history: UNKNOWN
+          # depth:
+            reliability: reliable
+            durability: transient_local
+        'tricycle_controller/odom':
+          type: 'nav_msgs/msg/Odometry'
+          qos:
+          # profile:
+          # history: UNKNOWN
+          # depth:
+            reliability: reliable
+            durability: transient_local
+        'tricycle_controller/transition_event':
+          type: 'lifecycle_msgs/msg/TransitionEvent'
+          qos:
+          # profile:
+          # history: UNKNOWN
+          # depth:
+            reliability: reliable
+            durability: volatile
+      subscribers:
+        'clock':
+          type: 'rosgraph_msgs/msg/Clock'
+        'tricycle_controller/cmd_vel':
+          type: 'geometry_msgs/msg/Twist'
+      serviceservers:
+        'tricycle_controller/reset_odometry':
+          type: 'std_srvs/srv/Empty'
+      parameters:
+		  'traction_joint_name':
+		    type: String
+		    value: "b_caster_r_wheel_joint"
+		  'steering_joint_name':
+		    type: String
+		    value: "b_caster_rotation_joint"
+		  'wheel_radius':
+		    type: Double
+		    value: 0.0782
+		  'wheelbase':
+		    type: Double
+		    value: 0.37266
+		  'odom_frame_id':
+		    type: String
+		    value: "odom"
+		  'base_frame_id':
+		    type: String
+		    value: "base_link"
+		  'publish_rate':
+		    type: Double
+		    value: 50.0
+		  'open_loop':
+		    type: Boolean
+		    value: false
+		  'enable_odom_tf':
+		    type: Boolean
+		    value: true
+		  'odom_only_twist':
+		    type: Boolean
+		    value: false
+		  'pose_covariance_diagonal':
+		    type: Array[Double]
+		    value: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+		  'twist_covariance_diagonal':
+		    type: Array[Double]
+		    value: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+		  'velocity_rolling_window_size':
+		    type: Integer
+		    value: 10
+		  'traction_max_acceleration':
+		    type: Double
+		    value: 5.0
+		  'traction_max_deceleration':
+		    type: Double
+		    value: 8.0
+		  'steering_min_position':
+		    type: Double
+		    value: -1.57
+		  'steering_max_position':
+		    type: Double
+		    value: 1.57
+		  'steering_max_velocity':
+		    type: Double
+		    value: 1.0
+		  'cmd_vel_timeout':
+		    type: Integer
+		    value: 500
+		  'use_stamped_vel':
+		    type: Boolean
+		    value: false
+		  'publish_ackermann_command':
+		    type: Boolean
+		    value: true
+
+
+
+
+
+      

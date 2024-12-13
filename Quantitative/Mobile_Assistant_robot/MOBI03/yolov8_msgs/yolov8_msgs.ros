@@ -1,0 +1,7 @@
+yolov8_msgs:
+	msgs:
+		Yolov8Inference
+			message
+		InferenceResult
+			message
+

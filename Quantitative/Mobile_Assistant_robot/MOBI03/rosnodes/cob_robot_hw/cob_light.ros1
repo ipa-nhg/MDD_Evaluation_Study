@@ -1,0 +1,15 @@
+cob_light:
+  artifacts:
+    light_controller:
+      node: /light_controller
+      serviceservers:
+      	'/behavior/setLightGreen':
+      	  type: 'std_srvs/srv/Trigger'
+      	'/behavior/setLightRed':
+      	  type: 'std_srvs/srv/Trigger'
+      	'/behavior/setLightCyan':
+      	  type: 'std_srvs/srv/Trigger'
+      	'/behavior/setLightCyanBreath':
+      	  type: 'std_srvs/srv/Trigger'
+      	'/behavior/setLightCyanSweep':
+      	  type: 'std_srvs/srv/Trigger'

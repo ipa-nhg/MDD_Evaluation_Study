@@ -1,0 +1,23 @@
+man2_bt_skill_clients:
+  fromGitRepo: "https://gitlab.cc-asp.fraunhofer.de/ipa326/demonstrator/bt_based_application_framework.git"
+  artifacts:
+    bt_skill_client: # start with bt_operator
+      node: bt_skill_client
+      serviceclients:
+        "set_path_constrains":
+          type: "man2_msgs/srv/SetPathConstrains"
+      actionclients:
+        "compute_path_to_pose":
+          type: "man2_msgs/action/ComputePathToPose"
+        "compute_path_to_state":
+          type: "man2_msgs/action/ComputePathToState"
+        "compute_path_to_point":
+          type: "man2_msgs/action/ComputePathToPoint"
+        "execute_trajectory":
+          type: "man2_msgs/action/ExecuteTrajectory"
+        "get_current_ik_frame_pose":
+          type: "man2_msgs/action/GetCurrentIKFramePose"
+        "detect_aruco_marker":
+          type: "man2_msgs/action/ArucoMarkerDetection"
+        "control_gripper_via_io":
+          type: "man2_msgs/action/IOGripperCommand"

@@ -1,0 +1,28 @@
+cob_gazebo:
+  fromFile: "cob_sim/launch/cob_gazebo_slam_base.launch.py"
+  nodes:
+    gazebo:
+      from: "gazebo.gazebo"
+    cob_laserscan:
+      from: "cob_laserscan.cob_laserscan" 
+      interfaces:
+        - "base_laser_left/scan_raw": pub-> "cob_laserscan::scan_left"
+        - "base_laser_right/scan_raw": pub-> "cob_laserscan::scan_right"
+        - "base_laser_front/scan_raw": pub-> "cob_laserscan::scan_front"
+    cob_tricycle_controller:
+      from: "tricycle_controller.tricycle_controller"
+      interfaces:
+        - "tricycle_controller/cmd_vel_sub": sub->"tricycle_controller::tricycle_controller/cmd_vel"
+        - tf: pub->"tricycle_controller::tf"
+        - odom_diff: pub->"tricycle_controller::tricycle_controller/odom"
+    robot_state_publisher:
+      from: "robot_state_publisher.robot_state_publisher"
+      interfaces:
+        - joint_states_sub: sub-> "robot_state_publisher::joint_states"
+        - tf: pub-> "robot_state_publisher::tf"
+        - tf_static: pub-> "robot_state_publisher::tf_static"
+        - robot_description: pub-> "robot_state_publisher::robot_description"
+    cob_joint_state:
+      from: "cob_joint_state.cob_joint_state"
+      interfaces:
+        - joint_states: pub-> "cob_joint_state::joint_states"

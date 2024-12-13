@@ -1,0 +1,83 @@
+teleop_twist_joy:
+  artifacts:
+    teleop_node:
+      node: teleop_node
+      publishers:
+        'cmd_vel':
+          type: 'geometry_msgs/msg/Twist'
+          qos:
+          # profile:
+          # history: UNKNOWN
+          # depth:
+            reliability: reliable
+            durability: volatile
+      subscribers:
+        'joy':
+          type: 'sensor_msgs/msg/Joy'
+      parameters:
+        'axis_angular.pitch':
+          type: Integer
+          value: -1
+        'axis_angular.roll':
+          type: Integer
+          value: -1
+        'axis_angular.yaw':
+          type: Integer
+          value: 0
+        'axis_linear.x':
+          type: Integer
+          value: 1
+        'axis_linear.y':
+          type: Integer
+          value: -1
+        'axis_linear.z':
+          type: Integer
+          value: -1 
+        'enable_button':
+          type: Integer
+          value: 2
+        'enable_turbo_button':
+          type: Integer
+          value: 5
+        'require_enable_button':
+          type: Boolean
+          value: true
+        'scale_angular.pitch':
+          type: Double
+          value: 0.0
+        'scale_angular.roll':
+          type: Double
+          value: 0.0
+        'scale_angular.yaw':
+          type: Double
+          value: 0.4
+        'scale_angular_turbo.pitch':
+          type: Double
+          value: 0.0
+        'scale_angular_turbo.roll':
+          type: Double
+          value: 0.0
+        'scale_angular_turbo.yaw':
+          type: Double
+          value: 1.0
+        'scale_linear.x':
+          type: Double
+          value: 0.7
+        'scale_linear.y':
+          type: Double
+          value: 0.0
+        'scale_linear.z':
+          type: Double
+          value: 0.0
+        'scale_linear_turbo.x':
+          type: Double
+          value: 1.5
+        'scale_linear_turbo.y':
+          type: Double
+          value: 0.0
+        'scale_linear_turbo.z':
+          type: Double
+          value: 0.0
+        'use_sim_time':
+          type: Boolean
+          value: false

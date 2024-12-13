@@ -1,0 +1,64 @@
+twist_mux:
+  artifacts:
+    twist_mux:
+      node: twist_mux
+      publishers:
+        'cmd_vel_out':
+          type: 'geometry_msgs/msg/Twist'
+          qos:
+          # profile:
+          # history: UNKNOWN
+          # depth:
+            reliability: reliable
+            durability: volatile
+        'diagnostics':
+          type: 'diagnostic_msgs/msg/DiagnosticArray'
+          qos:
+          # profile:
+          # history: UNKNOWN
+          # depth:
+            reliability: reliable
+            durability: volatile
+      subscribers:
+        'clock':
+          type: 'rosgraph_msgs/msg/Clock'
+        'cmd_vel':
+          type: 'geometry_msgs/msg/Twist'
+        'cmd_vel_joy':
+          type: 'geometry_msgs/msg/Twist'
+        'cmd_vel_tracker':
+          type: 'geometry_msgs/msg/Twist'
+      parameters:
+        'diagnostic_updater.period':
+          type: Double
+          value: 1.0
+        'topics.joystick.priority':
+          type: Integer
+          value: 100
+        'topics.joystick.timeout':
+          type: Double
+          value: 0.5
+        'topics.joystick.topic':
+          type: String
+          value: "cmd_vel_joy"
+        'topics.navigation.priority':
+          type: Integer
+          value: 10
+        'topics.navigation.timeout':
+          type: Double
+          value: 0.5
+        'topics.navigation.topic':
+          type: String
+          value: "cmd_vel"
+        'topics.tracker.priority':
+          type: Integer
+          value: 20
+        'topics.tracker.timeout':
+          type: Double
+          value: 0.5
+        'topics.tracker.topic':
+          type: String
+          value: "cmd_vel_tracker"
+        'use_sim_time':
+          type: Boolean
+          value: true

@@ -1,0 +1,10 @@
+test_ros1:
+  artifacts:
+    test_node:
+      node: test_node
+      publishers:
+        'joy':
+          type: 'sensor_msgs/msg/Joy'
+      subscribers:
+        'test/cmd_vel':
+          type: 'geometry_msgs/msg/Twist'

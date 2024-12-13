@@ -1,0 +1,31 @@
+minimum_teleop:
+  nodes:
+    joy_node:
+      from: "joy.joy_node"
+      interfaces:
+      	- "joy": pub-> "joy_node::joy"
+      	- "joy/set_feedback": sub-> "joy_node::joy/set_feedback"
+      parameters:
+        - autorepeat_rate: "joy_node::autorepeat_rate"
+          value: 20.0
+        - deadzone: "joy_node::deadzone"
+          value: 0.3
+        - joy_dev: "joy_node::joy_dev"
+          value: "/dev/input/js0"
+    teleop_twist_joy_node:
+      from: "teleop_twist_joy.teleop_node"
+      parameters:
+        - "axis_linear.x": "teleop_node::axis_linear.x"
+          value: 1
+        - "scale_linear.x" : "teleop_node::scale_linear.x"
+          value: 0.7  
+        - "scale_linear_turbo.x" : "teleop_node::scale_linear_turbo.x"
+          value: 1.5               
+        - "axis_angular.yaw": "teleop_node::axis_angular.yaw"
+          value: 0
+        - "scale_angular.yaw": "teleop_node::scale_angular.yaw"
+          value: 0.4
+        - enable_button: "teleop_node::enable_button"
+          value: 2
+        - enable_turbo_button: "teleop_node::enable_turbo_button"
+          value: 5

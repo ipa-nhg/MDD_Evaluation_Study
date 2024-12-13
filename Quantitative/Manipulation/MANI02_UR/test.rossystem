@@ -1,0 +1,3 @@
+test:
+  subSystems:
+    turtlebot_gazebo

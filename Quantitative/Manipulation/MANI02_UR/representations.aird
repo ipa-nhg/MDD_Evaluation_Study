@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<viewpoint:DAnalysis xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:viewpoint="http://www.eclipse.org/sirius/1.1.0" xsi:schemaLocation="http://www.eclipse.org/sirius/description/1.1.0 http://www.eclipse.org/sirius/1.1.0#//description" uid="_YvPKkDoAEe-n_ZYv48Yu1w" selectedViews="_7c6qkDoAEe-n_ZYv48Yu1w" version="15.4.1.202403191723">
+  <semanticResources>platform:/resource/RosModelsCatalog/navigation/amcl.ros2</semanticResources>
+  <semanticResources>platform:/resource/de.fraunhofer.ipa.ros.communication.objects/basic_msgs/lifecycle_msgs.ros</semanticResources>
+  <semanticResources>platform:/resource/de.fraunhofer.ipa.ros.communication.objects/basic_msgs/ros_core.ros</semanticResources>
+  <semanticResources>platform:/resource/de.fraunhofer.ipa.ros.communication.objects/nav2_msgs/builtin_interfaces.ros</semanticResources>
+  <semanticResources>platform:/resource/de.fraunhofer.ipa.ros.communication.objects/basic_msgs/common_msgs.ros</semanticResources>
+  <semanticResources>platform:/resource/de.fraunhofer.ipa.ros.communication.objects/nav2_msgs/nav2_msgs.ros</semanticResources>
+  <semanticResources>platform:/resource/de.fraunhofer.ipa.ros.communication.objects/nav2_msgs/nav_msgs.ros</semanticResources>
+  <semanticResources>platform:/resource/de.fraunhofer.ipa.ros.communication.objects/basic_msgs/tf2_msgs.ros</semanticResources>
+  <semanticResources>platform:/resource/de.fraunhofer.ipa.ros.communication.objects/nav2_msgs/sensor_msgs.ros</semanticResources>
+  <semanticResources>platform:/resource/RosModelsCatalog/navigation/behavior_server.ros2</semanticResources>
+  <semanticResources>platform:/resource/RosModelsCatalog/navigation/bt_navigator.ros2</semanticResources>
+  <semanticResources>platform:/resource/RosModelsCatalog/navigation/controller_server.ros2</semanticResources>
+  <semanticResources>platform:/resource/de.fraunhofer.ipa.ros.communication.objects/nav2_msgs/dwb_msgs.ros</semanticResources>
+  <semanticResources>platform:/resource/de.fraunhofer.ipa.ros.communication.objects/nav2_msgs/nav_2d_msgs.ros</semanticResources>
+  <semanticResources>platform:/resource/de.fraunhofer.ipa.ros.communication.objects/nav2_msgs/visualization_msgs.ros</semanticResources>
+  <semanticResources>platform:/resource/RosModelsCatalog/navigation/global_costmap.ros2</semanticResources>
+  <semanticResources>platform:/resource/de.fraunhofer.ipa.ros.communication.objects/nav2_msgs/map_msgs.ros</semanticResources>
+  <semanticResources>platform:/resource/RosModelsCatalog/navigation/lifecycle_manager_localization.ros2</semanticResources>
+  <semanticResources>platform:/resource/de.fraunhofer.ipa.ros.communication.objects/nav2_msgs/diagnostic_msgs.ros</semanticResources>
+  <semanticResources>platform:/resource/RosModelsCatalog/navigation/lifecycle_manager_navigation.ros2</semanticResources>
+  <semanticResources>platform:/resource/RosModelsCatalog/navigation/local_costmap.ros2</semanticResources>
+  <semanticResources>platform:/resource/RosModelsCatalog/navigation/map_server.ros2</semanticResources>
+  <semanticResources>platform:/resource/RosModelsCatalog/navigation/planner_server.ros2</semanticResources>
+  <semanticResources>platform:/resource/RosModelsCatalog/navigation/rviz2.ros2</semanticResources>
+  <semanticResources>platform:/resource/RosModelsCatalog/navigation/smoother_server.ros2</semanticResources>
+  <semanticResources>platform:/resource/RosModelsCatalog/navigation/velocity_smoother.ros2</semanticResources>
+  <semanticResources>platform:/resource/RosModelsCatalog/navigation/waypoint_follower.ros2</semanticResources>
+  <ownedViews xmi:type="viewpoint:DView" uid="_7c6qkDoAEe-n_ZYv48Yu1w">
+    <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/de.fraunhofer.ipa.ros.sirius/description/ros.odesign#//@ownedViewpoints[name='System']"/>
+  </ownedViews>
+</viewpoint:DAnalysis>

@@ -1,0 +1,89 @@
+qr_detection_and_decision_of_picking_robot:
+  ############################ Moveit and UR DRiver ###################
+  subSystems:
+    #prbt_cell_moveit_config
+    ur_robot
+  nodes:
+    ########################## Realsense ################################
+    marker_publisher:
+      from: "aruco_ros.marker_publisher"
+      interfaces:
+        #- camera_info_sub: sub-> "marker_publisher::camera_info"
+        - image: sub-> "marker_publisher::camera/color/image_raw"
+        - markers: pub-> "marker_publisher::markers"          
+    realsense_camera_driver:
+      from: "realsense2_camera.camera"
+      interfaces:
+        - "/camera_info": pub-> "realsense2_camera_node::color/camera_info"
+        - "/image_raw": pub-> "realsense2_camera_node::color/image_raw"
+        - "/metadata": pub-> "realsense2_camera_node::color/metadata"
+        - "/camera_info": pub-> "realsense2_camera_node::depth/camera_info"
+        - "/image_rect_raw": pub-> "realsense2_camera_node::depth/image_rect_raw"
+        - "/metadata": pub-> "realsense2_camera_node::depth/metadata"
+        - "/extrinsics/depth_to_color": pub-> "realsense2_camera_node::extrinsics/depth_to_color"
+        - "/imu": pub-> "realsense2_camera_node::imu"
+        - "/tf_static": pub-> "realsense2_camera_node::tf_static"
+    ########################### Behavior Tree Framework ##############################
+    bt_operator: # This is a managed node. It contains all the internal bt_functions
+      from: "man2_bt_operator.bt_operator"
+      interfaces:
+        - start_application: as-> "bt_operator::start_application"
+        - get_state_bt_operator_server: ss-> "bt_operator::~/get_state"
+        - change_state_bt_operator_server: ss-> "bt_operator::~/change_state"			   
+    detect_acuco_marker_action_server: # This is a managed node
+      from: "detect_aruco_marker_skill.detect_aruco_marker"
+      interfaces:
+        - markers_: sub-> "detect_aruco_marker_skill_server::markers"
+        - detect_aruco_marker: as-> "detect_aruco_marker_skill_server::detect_aruco_marker"
+        - get_state_aruco_marker_action_server: ss-> "detect_aruco_marker_skill_server::~/get_state"
+        - change_state_aruco_marker_action_server: ss-> "detect_aruco_marker_skill_server::~/change_state"   
+    moveit_skill_server: # This is a managed node
+      from: "moveit_skills.moveit_skill_server"
+      interfaces:
+        - compute_path_to_pose: as-> "moveit_skill_server_node::compute_path_to_pose"
+        - compute_path_to_point: as-> "moveit_skill_server_node::compute_path_to_point"
+        - compute_path_to_state: as-> "moveit_skill_server_node::compute_path_to_state"
+        - execute_trajectory: as-> "moveit_skill_server_node::execute_trajectory"
+        - get_current_ik_frame_pose: as-> "moveit_skill_server_node::get_current_ik_frame_pose"
+        - follow_joint_trajectory_: ac-> "moveit_skill_server_node::joint_trajectory_controller/follow_joint_trajectory"                                                                     
+    ur_io_control_gripper_skill_server: # This is a managed node
+      from: "io_control_gripper_skill.ur_io_control_gripper_action_server"
+      interfaces:
+         - set_io_command: sc->"main_ur_io_control_gripper_action_server::set_io"
+         - control_gripper_vio_io: as-> "main_ur_io_control_gripper_action_server::control_gripper_via_io"
+    call_start_bt_operator:
+        from: "man2_bt_operator.call_start_app"
+        interfaces:
+          - call_start_application: ac-> "call_start_app::start_application"
+    bt_skills_client:
+      from: "man2_bt_skill_clients.bt_skill_client"
+      interfaces:
+          - compute_path_to_pose_: ac-> "bt_skill_client::compute_path_to_pose"
+          - compute_path_to_state_: ac-> "bt_skill_client::compute_path_to_state"
+          - compute_path_to_point_: ac-> "bt_skill_client::compute_path_to_point"
+          - execute_trajectory_: ac-> "bt_skill_client::execute_trajectory"
+          - get_current_ik_frame_pose_: ac-> "bt_skill_client::get_current_ik_frame_pose"
+          - detect_aruco_marker_: ac-> "bt_skill_client::detect_aruco_marker"
+          - control_gripper_via_io_: ac-> "bt_skill_client::control_gripper_via_io"
+  connections:
+    ############## Aruco and Realsense ################
+    #- ["/camera_info", camera_info_sub]
+    - ["/image_raw", "image"]
+    ############## Middleware level #####################
+    - ["markers","markers_"]
+    - [follow_joint_trajectory, follow_joint_trajectory_]
+    - [set_io, set_io_command]
+    #### BT ####
+    - [compute_path_to_pose, compute_path_to_pose_]
+    - [compute_path_to_state, compute_path_to_state_]
+    - [compute_path_to_point, compute_path_to_point_]
+    - [execute_trajectory, execute_trajectory_]
+    - [get_current_ik_frame_pose, get_current_ik_frame_pose_]
+    - [detect_aruco_marker, detect_aruco_marker_]
+    - [control_gripper_vio_io,control_gripper_via_io_]
+    #- [get_state_aruco_marker_action_server, get_state_aruco_marker_action_server_client]
+    #- [change_state_aruco_marker_action_server, change_state_arcuro_marker_action_server_client]
+    #- [get_state_bt_operator_server, get_state_bt_operator_client]
+    #- [change_state_bt_operator_server, change_state_bt_operator_client]
+    #- [start_application, call_start_application]
+    

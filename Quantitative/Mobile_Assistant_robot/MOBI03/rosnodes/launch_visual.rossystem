@@ -1,0 +1,16 @@
+launch_visual:
+  fromFile: "cob_slam/launch/display_robot_0509.launch.py"
+  nodes:
+    robot_state_publisher:
+      from: "robot_state_publisher.robot_state_publisher"
+      interfaces:
+        - joint_states: sub-> "robot_state_publisher::joint_states"
+        - tf_pub_ros2: pub-> "robot_state_publisher::tf"
+        - tf_static_pub_ros2: pub-> "robot_state_publisher::tf_static"
+        - robot_description: pub-> "robot_state_publisher::robot_description"
+    rviz2:
+  		from: "rviz2.rviz2"
+  		interfaces:
+  		  - map_sub: sub-> "rviz2::map"
+  		  - robot_description_sub: sub-> "rviz2::robot_description"
+  		  - inference_result_sub: sub-> "rviz2::inference_result"

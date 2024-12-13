@@ -1,0 +1,39 @@
+joint_state_broadcaster:
+  artifacts:
+    joint_state_broadcaster: # change to executor name
+      node: joint_state_broadcaster
+      publishers:
+        "dynamic_joint_states":
+          type: "control_msgs/msg/DynamicJointState"
+        "joint_states":
+          type: "sensor_msgs/msg/JointState"
+      parameters:
+        "extra_joints":
+          type: Array [String]
+          value: "[]"
+        "interfaces":
+          type: Array [String]
+          value: "[]"
+        "joints":
+          type: Array [String]
+          value: "[]"
+        "map_interface_to_joint_state.effort":
+          type: String
+          value: "effort"
+        "map_interface_to_joint_state.position":
+          type: String
+          value: "position"
+        "map_interface_to_joint_state.velocity":
+          type: String
+          value: "velocity"
+        "robot_description":
+          type: String
+        "update_rate":
+          type: Integer
+          value: 0
+        "use_local_topics":
+          type: Boolean
+          value: False
+        "use_sim_time":
+          type: Boolean
+          value: False

@@ -1,0 +1,11 @@
+cob_laserscan:
+  artifacts:
+    cob_laserscan: # change to exector name
+      node: cob_laserscan
+      publishers:
+        "scan_left":
+          type: "sensor_msgs/msg/LaserScan"
+        "scan_right":
+          type: "sensor_msgs/msg/LaserScan"
+        "scan_front":
+          type: "sensor_msgs/msg/LaserScan"

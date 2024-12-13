@@ -1,0 +1,42 @@
+robot_state_publisher:
+  artifacts:
+    robot_state_publisher: # change to exector name
+      node: robot_state_publisher
+      subscribers:
+        "joint_states":
+          type: "sensor_msgs/msg/JointState"
+          qos:
+            depth: 5
+            history: keep_last
+            reliability: best_effort
+      publishers:
+        "robot_description":
+          type: "std_msgs/msg/String"
+        "tf":
+          type: "tf2_msgs/msg/TFMessage"
+          qos:
+            depth: 100
+            durability: volatile
+            history: keep_last
+            reliability: reliable
+        "tf_static":
+          type: "tf2_msgs/msg/TFMessage"
+          qos:
+            depth: 1
+            history: keep_last
+            reliability: reliable
+      parameters:
+        "frame_prefix":
+          type: String
+          value: ""
+        "ignore_timestamp":
+          type: Boolean
+          value: False
+        "publish_frequency":
+          type: Double
+          value: 20.0
+        "robot_description":
+          type: String
+        "use_sim_time":
+          type: Boolean
+          value: True

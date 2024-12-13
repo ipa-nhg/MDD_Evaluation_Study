@@ -1,0 +1,74 @@
+ur_robot:
+  fromFile: "ur5e_cell_moveit_config/launch/robot.launch.py"
+  nodes:
+    ur_controller:
+      from: "arm_controller.arm_controller"
+      interfaces:
+        - joint_trajectory: sub-> "arm_controller::~/joint_trajectory"
+        #- query_state: sc-> "arm_controller::~/query_state"
+        - follow_joint_trajectory: as->"arm_controller::~/follow_joint_trajectory"
+    #robot_state_publisher_node:
+    #  from: "robot_state_publisher.robot_state_publisher"
+    #  interfaces:
+    #    - joint_states: sub-> "robot_state_publisher::joint_states"
+    #    - tf: pub-> "robot_state_publisher::tf"  
+    controller_manager:
+      from: "controller_manager.controller_manager" # "joint_state_broadcaster", "io_and_status_controller",  "speed_scaling_state_broadcaster", "force_torque_sensor_broadcaster"
+      interfaces:
+        - configure_controller: ss-> "controller_manager::~/configure_controller"
+        - load_controller: ss-> "controller_manager::~/load_controller"
+        - reload_controller_libraries: ss-> "controller_manager::~/reload_controller_libraries"
+        - set_hardware_component_state: ss-> "controller_manager::~/set_hardware_component_state"
+        - switch_controller: ss-> "controller_manager::~/switch_controller"
+        - unload_controller: ss-> "controller_manager::~/unload_controller"
+    #joint_state_publisher:
+    #  from: "joint_state_broadcaster.joint_state_broadcaster"
+    #  interfaces:
+    #    - joint_states_pub: pub-> "joint_state_broadcaster::joint_states"
+    io_controller:
+      from: "io_and_status_controller.io_and_status_controller"
+      interfaces:
+        - io_states: pub-> "io_and_status_controller::~/io_states"
+        - robot_mode: pub-> "io_and_status_controller::~/robot_mode"
+        - robot_program_running: pub-> "io_and_status_controller::~/robot_program_running"
+        - safety_mode: pub-> "io_and_status_controller::~/safety_mode"
+        - tool_data: pub-> "io_and_status_controller::~/tool_data"
+        - hand_back_control: ss-> "io_and_status_controller::~/hand_back_control"
+        - resend_robot_program: ss-> "io_and_status_controller::~/resend_robot_program"
+        - set_io: ss-> "io_and_status_controller::~/set_io"
+        - set_payload: ss-> "io_and_status_controller::~/set_payload"
+        - set_speed_slider: ss-> "io_and_status_controller::~/set_speed_slider"
+        - zero_ftsensor: ss-> "io_and_status_controller::~/zero_ftsensor"
+    #urscript_interface:
+    #  from: "ur_robot_driver.urscript_interface"
+    #  interfaces:
+    #    - command: sub-> "urscript_interface::~/script_command"
+    move_group:
+      from: "move_group.move_group"
+      interfaces:
+        - trajectory_execution_event: sub-> "move_group::trajectory_execution_event"
+        - motion_plan_request: pub-> "move_group::motion_plan_request"
+        - robot_description_semantic: pub-> "move_group::robot_description_semantic"
+        - apply_planning_scene: ss-> "move_group::apply_planning_scene"
+        - check_state_validity: ss-> "move_group::check_state_validity"
+        - compute_cartesian_path: ss-> "move_group::compute_cartesian_path"
+        - compute_fk: ss-> "move_group::compute_fk"
+        - compute_ik: ss-> "move_group::compute_ik"
+        - plan_kinematic_path: ss-> "move_group::plan_kinematic_path"
+        - query_planner_interface: ss-> "move_group::query_planner_interface"
+        - execute_trajectory: as-> "move_group::execute_trajectory"
+        - move_action: as-> "move_group::move_action"
+  connections:
+    #-[joint_states_pub, joint_states]
+    #-[follow_joint_trajectory, joint_trajectory_client]
+  parameters:
+    ur_type: # used in several nodes
+      type: String
+    robot_ip: # used in several nodes
+      type: String
+    use_fake_hardware:
+      type: Boolean
+    initial_joint_controller:
+      type: String
+    activate_joint_controller:
+      type: Boolean

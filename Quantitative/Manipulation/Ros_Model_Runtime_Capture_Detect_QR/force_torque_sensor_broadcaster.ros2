@@ -1,0 +1,69 @@
+force_torque_sensor_broadcaster:
+  artifacts:
+    force_torque_sensor_broadcaster: # change to exector name
+      node: force_torque_sensor_broadcaster
+      subscribers:
+        "parameter_events":
+          type: "rcl_interfaces/msg/ParameterEvent"
+      publishers:
+        "~/transition_event":
+          type: "lifecycle_msgs/msg/TransitionEvent"
+        "~/wrench":
+          type: "geometry_msgs/msg/WrenchStamped"
+        "parameter_events":
+          type: "rcl_interfaces/msg/ParameterEvent"
+        "rosout":
+          type: "rcl_interfaces/msg/Log"
+      serviceservers:
+        "~/describe_parameters":
+          type: "rcl_interfaces/srv/DescribeParameters"
+        "~/get_parameter_types":
+          type: "rcl_interfaces/srv/GetParameterTypes"
+        "~/get_parameters":
+          type: "rcl_interfaces/srv/GetParameters"
+        "~/list_parameters":
+          type: "rcl_interfaces/srv/ListParameters"
+        "~/set_parameters":
+          type: "rcl_interfaces/srv/SetParameters"
+        "~/set_parameters_atomically":
+          type: "rcl_interfaces/srv/SetParametersAtomically"
+      parameters:
+        "frame_id":
+          type: String
+          value: "tool0"
+        "interface_names.force.x":
+          type: String
+          value: ""
+        "interface_names.force.y":
+          type: String
+          value: ""
+        "interface_names.force.z":
+          type: String
+          value: ""
+        "interface_names.torque.x":
+          type: String
+          value: ""
+        "interface_names.torque.y":
+          type: String
+          value: ""
+        "interface_names.torque.z":
+          type: String
+          value: ""
+        "robot_description":
+          type: String
+          value: ""
+        "sensor_name":
+          type: String
+          value: "tcp_fts_sensor"
+        "state_interface_names":
+          type: Array[String]
+          value: "['force.x', 'force.y', 'force.z', 'torque.x', 'torque.y', 'torque.z']"
+        "topic_name":
+          type: String
+          value: "ft_data"
+        "update_rate":
+          type: Integer
+          value: 0
+        "use_sim_time":
+          type: Boolean
+          value: False

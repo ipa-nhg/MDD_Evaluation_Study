@@ -1,0 +1,293 @@
+local_costmap:
+  artifacts:
+    local_costmap: # change to exector name
+      node: local_costmap
+      subscribers:
+        "local_costmap/footprint":
+          type: "geometry_msgs/msg/Polygon"
+
+        "scan":
+          type: "sensor_msgs/msg/LaserScan"
+      publishers:
+        "local_costmap/clearing_endpoints":
+          type: "sensor_msgs/msg/PointCloud2"
+        "local_costmap/costmap":
+          type: "nav_msgs/msg/OccupancyGrid"
+        "local_costmap/costmap_raw":
+          type: "nav2_msgs/msg/Costmap"
+        "local_costmap/costmap_updates":
+          type: "map_msgs/msg/OccupancyGridUpdate"
+        "~/transition_event":
+          type: "lifecycle_msgs/msg/TransitionEvent"
+        "local_costmap/published_footprint":
+          type: "geometry_msgs/msg/PolygonStamped"
+        "local_costmap/voxel_grid":
+          type: "nav2_msgs/msg/VoxelGrid"
+
+
+      serviceservers:
+        "local_costmap/clear_around_local_costmap":
+          type: "nav2_msgs/srv/ClearCostmapAroundRobot"
+        "local_costmap/clear_entirely_local_costmap":
+          type: "nav2_msgs/srv/ClearEntireCostmap"
+        "local_costmap/clear_except_local_costmap":
+          type: "nav2_msgs/srv/ClearCostmapExceptRegion"
+        "local_costmap/get_costmap":
+          type: "nav2_msgs/srv/GetCostmap"
+        "~/change_state":
+          type: "lifecycle_msgs/srv/ChangeState"
+
+        "~/get_available_states":
+          type: "lifecycle_msgs/srv/GetAvailableStates"
+        "~/get_available_transitions":
+          type: "lifecycle_msgs/srv/GetAvailableTransitions"
+
+        "~/get_state":
+          type: "lifecycle_msgs/srv/GetState"
+        "~/get_transition_graph":
+          type: "lifecycle_msgs/srv/GetAvailableTransitions"
+
+      parameters:
+        "bond_disable_heartbeat_timeout":
+          type: Boolean
+          value: True
+        "always_send_full_costmap":
+          type: Boolean
+          value: True
+        "clearable_layers":
+          type: Array [String]
+          value: "['obstacle_layer', 'voxel_layer', 'range_layer']"
+        "filters":
+          type: Array [String]
+          value: "[]"
+        "footprint":
+          type: String
+          value: "[]"
+        "footprint_padding":
+          type: Double
+          value: 0.009999999776482582
+        "global_frame":
+          type: String
+          value: "odom"
+        "height":
+          type: Integer
+          value: 3
+        "inflation_layer.cost_scaling_factor":
+          type: Double
+          value: 3.0
+        "inflation_layer.enabled":
+          type: Boolean
+          value: True
+        "inflation_layer.inflate_around_unknown":
+          type: Boolean
+          value: False
+        "inflation_layer.inflate_unknown":
+          type: Boolean
+          value: False
+        "inflation_layer.inflation_radius":
+          type: Double
+          value: 1.0
+        "inflation_layer.plugin":
+          type: String
+          value: "nav2_costmap_2d::InflationLayer"
+        "lethal_cost_threshold":
+          type: Integer
+          value: 100
+        "map_topic":
+          type: String
+          value: "/map"
+        "observation_sources":
+          type: String
+          value: ""
+        "obstacle_layer.combination_method":
+          type: Integer
+          value: 1
+        "obstacle_layer.enabled":
+          type: Boolean
+          value: True
+        "obstacle_layer.footprint_clearing_enabled":
+          type: Boolean
+          value: True
+        "obstacle_layer.max_obstacle_height":
+          type: Double
+          value: 2.0
+        "obstacle_layer.min_obstacle_height":
+          type: Double
+          value: 0.0
+        "obstacle_layer.observation_sources":
+          type: String
+          value: "scan"
+        "obstacle_layer.plugin":
+          type: String
+          value: "nav2_costmap_2d::ObstacleLayer"
+        "obstacle_layer.scan.clearing":
+          type: Boolean
+          value: True
+        "obstacle_layer.scan.data_type":
+          type: String
+          value: "LaserScan"
+        "obstacle_layer.scan.expected_update_rate":
+          type: Double
+          value: 0.0
+        "obstacle_layer.scan.inf_is_valid":
+          type: Boolean
+          value: False
+        "obstacle_layer.scan.marking":
+          type: Boolean
+          value: True
+        "obstacle_layer.scan.max_obstacle_height":
+          type: Double
+          value: 2.0
+        "obstacle_layer.scan.min_obstacle_height":
+          type: Double
+          value: 0.0
+        "obstacle_layer.scan.observation_persistence":
+          type: Double
+          value: 0.0
+        "obstacle_layer.scan.obstacle_max_range":
+          type: Double
+          value: 2.5
+        "obstacle_layer.scan.obstacle_min_range":
+          type: Double
+          value: 0.0
+        "obstacle_layer.scan.raytrace_max_range":
+          type: Double
+          value: 3.0
+        "obstacle_layer.scan.raytrace_min_range":
+          type: Double
+          value: 0.0
+        "obstacle_layer.scan.sensor_frame":
+          type: String
+          value: ""
+        "obstacle_layer.scan.topic":
+          type: String
+          value: "/scan"
+        "origin_x":
+          type: Double
+          value: 0.0
+        "origin_y":
+          type: Double
+          value: 0.0
+        "plugins":
+          type: Array [String]
+          value: "['obstacle_layer', 'voxel_layer', 'inflation_layer']"
+        "publish_frequency":
+          type: Double
+          value: 2.0
+        "resolution":
+          type: Double
+          value: 0.05
+        "robot_base_frame":
+          type: String
+          value: "base_link"
+        "robot_radius":
+          type: Double
+          value: 0.22
+        "rolling_window":
+          type: Boolean
+          value: True
+        "track_unknown_space":
+          type: Boolean
+          value: False
+        "transform_tolerance":
+          type: Double
+          value: 0.3
+        "trinary_costmap":
+          type: Boolean
+          value: True
+        "unknown_cost_value":
+          type: Integer
+          value: 255
+        "update_frequency":
+          type: Double
+          value: 5.0
+        "use_maximum":
+          type: Boolean
+          value: False
+        "use_sim_time":
+          type: Boolean
+          value: False
+        "voxel_layer.combination_method":
+          type: Integer
+          value: 1
+        "voxel_layer.enabled":
+          type: Boolean
+          value: True
+        "voxel_layer.footprint_clearing_enabled":
+          type: Boolean
+          value: True
+        "voxel_layer.mark_threshold":
+          type: Integer
+          value: 0
+        "voxel_layer.max_obstacle_height":
+          type: Double
+          value: 2.0
+        "voxel_layer.min_obstacle_height":
+          type: Double
+          value: 0.0
+        "voxel_layer.observation_sources":
+          type: String
+          value: "scan"
+        "voxel_layer.origin_z":
+          type: Double
+          value: 0.0
+        "voxel_layer.plugin":
+          type: String
+          value: "nav2_costmap_2d::VoxelLayer"
+        "voxel_layer.publish_voxel_map":
+          type: Boolean
+          value: True
+        "voxel_layer.scan.clearing":
+          type: Boolean
+          value: True
+        "voxel_layer.scan.data_type":
+          type: String
+          value: "LaserScan"
+        "voxel_layer.scan.expected_update_rate":
+          type: Double
+          value: 0.0
+        "voxel_layer.scan.inf_is_valid":
+          type: Boolean
+          value: False
+        "voxel_layer.scan.marking":
+          type: Boolean
+          value: True
+        "voxel_layer.scan.max_obstacle_height":
+          type: Double
+          value: 2.0
+        "voxel_layer.scan.min_obstacle_height":
+          type: Double
+          value: 0.0
+        "voxel_layer.scan.observation_persistence":
+          type: Double
+          value: 0.0
+        "voxel_layer.scan.obstacle_max_range":
+          type: Double
+          value: 2.5
+        "voxel_layer.scan.obstacle_min_range":
+          type: Double
+          value: 0.0
+        "voxel_layer.scan.raytrace_max_range":
+          type: Double
+          value: 3.0
+        "voxel_layer.scan.raytrace_min_range":
+          type: Double
+          value: 0.0
+        "voxel_layer.scan.sensor_frame":
+          type: String
+          value: ""
+        "voxel_layer.scan.topic":
+          type: String
+          value: "/scan"
+        "voxel_layer.unknown_threshold":
+          type: Integer
+          value: 15
+        "voxel_layer.z_resolution":
+          type: Double
+          value: 0.05
+        "voxel_layer.z_voxels":
+          type: Integer
+          value: 16
+        "width":
+          type: Integer
+          value: 3

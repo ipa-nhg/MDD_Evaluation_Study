@@ -1,0 +1,189 @@
+amcl:
+  artifacts:
+    amcl: # change to exector name
+      node: amcl
+      subscribers:
+        "initialpose":
+          type: "geometry_msgs/msg/PoseWithCovarianceStamped"
+        "map":
+          type: "nav_msgs/msg/OccupancyGrid"
+        "scan":
+          type: "sensor_msgs/msg/LaserScan"
+      publishers:
+        "~/transition_event":
+          type: "lifecycle_msgs/msg/TransitionEvent"
+        "~_pose":
+          type: "geometry_msgs/msg/PoseWithCovarianceStamped"
+        "particle_cloud":
+          type: "nav2_msgs/msg/ParticleCloud"
+        "tf":
+          type: "tf2_msgs/msg/TFMessage"
+      serviceservers:
+        "~/change_state":
+          type: "lifecycle_msgs/srv/ChangeState"
+        "~/get_available_states":
+          type: "lifecycle_msgs/srv/GetAvailableStates"
+        "~/get_available_transitions":
+          type: "lifecycle_msgs/srv/GetAvailableTransitions"
+        "~/get_state":
+          type: "lifecycle_msgs/srv/GetState"
+        "~/get_transition_graph":
+          type: "lifecycle_msgs/srv/GetAvailableTransitions"
+        "reinitialize_global_localization":
+          type: "std_srvs/srv/Empty"
+        "request_nomotion_update":
+          type: "std_srvs/srv/Empty"
+      parameters:
+        "bond_disable_heartbeat_timeout":
+          type: Boolean
+          value: True
+        "alpha1":
+          type: Double
+          value: 0.2
+        "alpha2":
+          type: Double
+          value: 0.2
+        "alpha3":
+          type: Double
+          value: 0.2
+        "alpha4":
+          type: Double
+          value: 0.2
+        "alpha5":
+          type: Double
+          value: 0.2
+        "always_reset_initial_pose":
+          type: Boolean
+          value: False
+        "base_frame_id":
+          type: String
+          value: "base_footprint"
+        "beam_skip_distance":
+          type: Double
+          value: 0.5
+        "beam_skip_error_threshold":
+          type: Double
+          value: 0.9
+        "beam_skip_threshold":
+          type: Double
+          value: 0.3
+        "do_beamskip":
+          type: Boolean
+          value: False
+        "first_map_only":
+          type: Boolean
+          value: False
+        "global_frame_id":
+          type: String
+          value: "map"
+        "initial_pose.x":
+          type: Double
+          value: 0.0
+        "initial_pose.y":
+          type: Double
+          value: 0.0
+        "initial_pose.yaw":
+          type: Double
+          value: 0.0
+        "initial_pose.z":
+          type: Double
+          value: 0.0
+        "lambda_short":
+          type: Double
+          value: 0.1
+        "laser_likelihood_max_dist":
+          type: Double
+          value: 2.0
+        "laser_max_range":
+          type: Double
+          value: 100.0
+        "laser_min_range":
+          type: Double
+          value: -1.0
+        "laser_model_type":
+          type: String
+          value: "likelihood_field"
+        "map_topic":
+          type: String
+          value: "map"
+        "max_beams":
+          type: Integer
+          value: 60
+        "max_particles":
+          type: Integer
+          value: 2000
+        "min_particles":
+          type: Integer
+          value: 500
+        "odom_frame_id":
+          type: String
+          value: "odom"
+        "pf_err":
+          type: Double
+          value: 0.05
+        "pf_z":
+          type: Double
+          value: 0.99
+        "qos_overrides./tf.publisher.depth":
+          type: Integer
+          value: 100
+        "qos_overrides./tf.publisher.durability":
+          type: String
+          value: "volatile"
+        "qos_overrides./tf.publisher.history":
+          type: String
+          value: "keep_last"
+        "qos_overrides./tf.publisher.reliability":
+          type: String
+          value: "reliable"
+        "recovery_alpha_fast":
+          type: Double
+          value: 0.0
+        "recovery_alpha_slow":
+          type: Double
+          value: 0.0
+        "resample_interval":
+          type: Integer
+          value: 1
+        "robot_model_type":
+          type: String
+          value: "nav2_amcl::DifferentialMotionModel"
+        "save_pose_rate":
+          type: Double
+          value: 0.5
+        "scan_topic":
+          type: String
+          value: "scan"
+        "set_initial_pose":
+          type: Boolean
+          value: False
+        "sigma_hit":
+          type: Double
+          value: 0.2
+        "tf_broadcast":
+          type: Boolean
+          value: True
+        "transform_tolerance":
+          type: Double
+          value: 1.0
+        "update_min_a":
+          type: Double
+          value: 0.2
+        "update_min_d":
+          type: Double
+          value: 0.25
+        "use_sim_time":
+          type: Boolean
+          value: False
+        "z_hit":
+          type: Double
+          value: 0.5
+        "z_max":
+          type: Double
+          value: 0.05
+        "z_rand":
+          type: Double
+          value: 0.5
+        "z_short":
+          type: Double
+          value: 0.05

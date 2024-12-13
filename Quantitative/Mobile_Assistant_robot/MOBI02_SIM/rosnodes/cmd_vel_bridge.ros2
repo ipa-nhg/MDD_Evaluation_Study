@@ -1,0 +1,16 @@
+tricycle_sim:
+  artifacts:
+    cmd_vel_bridge_Twist_node:
+      node: cmd_vel_bridge_Twist_node
+      publishers:
+        'cmd_vel_out_pub':
+          type: 'geometry_msgs/msg/Twist'
+          qos:
+          # profile:
+          # history: UNKNOWN
+          # depth:
+            reliability: reliable
+            durability: volatile
+      subscribers:
+        'cmd_vel_out':
+          type: 'geometry_msgs/msg/Twist'

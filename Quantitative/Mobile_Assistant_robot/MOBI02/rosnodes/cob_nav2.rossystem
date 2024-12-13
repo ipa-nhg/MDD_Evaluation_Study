@@ -1,0 +1,32 @@
+cob_nav2:
+  fromFile: 'cob_slam/launch/nav2_only.launch.py'
+  nodes:
+    amcl:
+      from: "amcl.amcl"
+    behavior_server:
+      from: "behavior_server.behavior_server"
+    bt_navigator:
+      from: "bt_navigator.bt_navigator"
+      interfaces:
+       - 'tf_sub': sub->"bt_navigator::tf"
+       - 'tf_static_sub': sub->"bt_navigator::tf_static"
+    controller_server:
+      from: "controller_server.controller_server"
+    global_costmap:
+      from: "global_costmap.global_costmap"
+    lifecycle_manager_localization:
+      from: "lifecycle_manager_localization.lifecycle_manager_localization"
+    lifecycle_manager_navigation:
+      from: "lifecycle_manager_navigation.lifecycle_manager_navigation"
+    local_costmap:
+      from: "local_costmap.local_costmap"
+    map_server:
+      from: "map_server.map_server"
+    planner_server:
+      from: "planner_server.planner_server"
+    smoother_server:
+      from: "smoother_server.smoother_server"
+    velocity_smoother:
+      from: "velocity_smoother.velocity_smoother"
+    waypoint_follower:
+      from: "waypoint_follower.waypoint_follower"

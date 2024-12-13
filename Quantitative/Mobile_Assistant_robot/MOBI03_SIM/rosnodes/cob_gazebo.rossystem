@@ -1,0 +1,48 @@
+cob_gazebo:
+  fromFile: "cob_sim_trad/launch/cob_gazebo.launch.py"
+  nodes:
+    gazebo:
+      from: "gazebo.gazebo"
+    cob_laserscan:
+      from: "cob_laserscan.cob_laserscan" 
+      interfaces:
+        - "base_laser_left/scan_raw": pub-> "cob_laserscan::scan_left"
+        - "base_laser_right/scan_raw": pub-> "cob_laserscan::scan_right"
+        - "base_laser_front/scan_raw": pub-> "cob_laserscan::scan_front"
+    cob_camera_controller:
+      from: "camera_controller./cam_ns/cam_frame_controller" 
+      interfaces:
+        - torso_left_cam_info: pub-> "camera_controller::cam/depth/camera_info"
+        - torso_left_image_raw: pub-> "camera_controller::cam/depth/image_raw"
+        - torso_left_image_raw_compressed: pub-> "camera_controller::cam/depth/image_raw/compressed"
+    cob_tricycle_controller:
+      from: "tricycle_controller.tricycle_controller"
+      interfaces:
+        - "tricycle_controller/cmd_vel_sub": sub->"tricycle_controller::tricycle_controller/cmd_vel"
+        - tf: pub->"tricycle_controller::tf"
+        - odom_diff: pub->"tricycle_controller::tricycle_controller/odom"
+    cob_torso_controller:
+      from: "torso_controller.torso_controller"
+    robot_state_publisher:
+      from: "robot_state_publisher.robot_state_publisher"
+      interfaces:
+        - joint_states_sub: sub-> "robot_state_publisher::joint_states"
+        - tf_rsp: pub-> "robot_state_publisher::tf"
+        - tf_static_rsp: pub-> "robot_state_publisher::tf_static"
+        - robot_description: pub-> "robot_state_publisher::robot_description"
+    cob_joint_state:
+      from: "cob_joint_state.cob_joint_state"
+      interfaces:
+        - joint_states: pub-> "cob_joint_state::joint_states"
+    cob_light_controller:
+      from: "cob_light_controller./light_controller"
+      interfaces:
+        - set_Light_color: ss-> "light_controller::set_Light_color"
+    cob_sound_controller:
+      from: "cob_light_controller./light_controller"
+      interfaces:
+        - sound_play: ss-> "sound_controller::sound_play"
+    cob_mimic_controller:
+      from: "cob_light_controller./light_controller"
+      interfaces:
+        - set_Mimic: ss-> "light_controller::set_Light_color"

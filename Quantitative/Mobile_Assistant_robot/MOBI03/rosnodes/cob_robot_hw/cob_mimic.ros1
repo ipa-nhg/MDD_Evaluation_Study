@@ -1,0 +1,11 @@
+cob_mimic:
+  artifacts:
+    mimic_controller:
+      node: /mimic_controller
+      serviceservers:
+      	'/behavior/setMimicAsking':
+      	  type: 'std_srvs/srv/Trigger'
+      	'/behavior/setMimicBlinking':
+      	  type: 'std_srvs/srv/Trigger'
+      	'/behavior/setMimicBusy':
+      	  type: 'std_srvs/srv/Trigger'

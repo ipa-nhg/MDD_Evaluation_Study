@@ -1,0 +1,67 @@
+cob_teleop_bridge:
+  subSystems:
+  	cob_gazebo
+  nodes:
+     test_node_ros1:
+      from: "test_ros1.test_node"
+      interfaces:
+        - test_cmd_vel: sub-> "test_node::test/cmd_vel"
+     joy_node:
+      from: "joy.joy_node"
+      parameters:
+      	- autorepeat_rate: "joy_node::autorepeat_rate"
+      	  value: 20.0
+      	- deadzone: "joy_node::deadzone"
+      	  value: 0.3
+      	- joy_dev: "joy_node::joy_dev"
+      	  value: "/dev/input/js0"
+     twist_mux:
+      from: "twist_mux.twist_mux"
+      interfaces:
+        - cmd_vel_out: pub-> "twist_mux::cmd_vel_out"
+        - cmd_vel_sub: sub-> "twist_mux::cmd_vel"
+      parameters:
+        - diagnostic_updater_period: "twist_mux::diagnostic_updater.period"
+          value: 1.0
+        - topics_joystick_priority: "twist_mux::topics.joystick.priority"
+          value: 100
+        - topics_joystick_timeout: "twist_mux::topics.joystick.timeout"
+          value: 0.5
+        - topics_joystick_topic: "twist_mux::topics.joystick.topic"
+          value: "cmd_vel_joy"
+        - topics_navigation_priority: "twist_mux::topics.navigation.priority"
+          value: 10
+        - topics_navigation_timeout: "twist_mux::topics.navigation.timeout"
+          value: 0.5
+        - topics_navigation_topic: "twist_mux::topics.navigation.topic"
+          value: "cmd_vel"
+        - topics_tracker_priority: "twist_mux::topics.tracker.priority"
+          value: 20
+        - topics_tracker_timeout: "twist_mux::topics.tracker.timeout"
+          value: 0.5
+        - topics_tracker_topic: "twist_mux::topics.tracker.topic"
+          value: "cmd_vel_tracker"
+        - use_sim_time: "twist_mux::use_sim_time"
+          value: true
+     teleop_twist_joy_node:
+  		from: "teleop_twist_joy.teleop_node"
+  		interfaces:
+  			- "cmd_vel_pub": pub-> "teleop_node::cmd_vel"
+  		parameters:
+  			- enable_button: "teleop_node::enable_button"
+  			  value: 2
+  			- enable_turbo_button: "teleop_node::enable_turbo_button"
+  			  value: 5
+  			- axis_angular_yaw: "teleop_node::axis_angular.yaw"
+  			  value: 0
+  			- scale_angular_yaw: "teleop_node::scale_angular.yaw"
+  			  value: 0.4
+  			- axis_linear_x: "teleop_node::axis_linear.x"
+  			  value: 1
+  			- scale_linear_x: "teleop_node::scale_linear.x"
+  			  value: 0.7
+  			- scale_linear_turbo_x: "teleop_node::scale_linear_turbo.x"
+  			  value: 1.5
+  connections:
+   - [ cmd_vel_out , test_cmd_vel]
+ 		

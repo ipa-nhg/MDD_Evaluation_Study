@@ -1,0 +1,65 @@
+pointcloud_to_laserscan:
+  artifacts:
+    pointcloud_to_laserscan_node:
+      node: pointcloud_to_laserscan
+      publishers:
+        'scan':
+          type: 'sensor_msgs/msg/LaserScan'
+          qos:
+          # profile:
+          # history: UNKNOWN
+          # depth:
+            reliability: best_effort
+            durability: volatile
+      subscribers:
+        'clock':
+          type: 'rosgraph_msgs/msg/Clock'
+        'cloud_in':
+          type: 'sensor_msgs/msg/PointCloud2'
+      parameters:
+		  'angle_increment':
+		    type: Double
+		    value: 0.0087
+		  'angle_max':
+		    type: Double
+		    value: 3.14
+		  'angle_min':
+		    type: Double
+		    value: -3.14
+		  'inf_epsilon':
+		    type: Double
+		    value: 1.0
+		  'max_height':
+		    type: Double
+		    value: 1.0
+		  'min_height':
+		    type: Double
+		    value: 0.0
+		  'qos_overrides./parameter_events.publisher.depth':
+		    type: Integer
+		    value: 1000
+		  'qos_overrides./parameter_events.publisher.reliability':
+		    type: String
+		    value: "best_effort"
+		  'queue_size':
+		    type: Integer
+		    value: 16
+		  'range_max':
+		    type: Double
+		    value: 29.5
+		  'range_min':
+		    type: Double
+		    value: 0.05
+		  'scan_time':
+		    type: Double
+		    value: 0.3333
+		  'transform_tolerance':
+		    type: Double
+		    value: 0.01
+		  'use_inf':
+		    type: Boolean
+		    value: true
+		  'use_sim_time':
+		    type: Boolean
+		    value: true
+		  	  

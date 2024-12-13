@@ -1,0 +1,4 @@
+cob_base_controller_utils:
+  msgs:
+    WheelCommands
+      message

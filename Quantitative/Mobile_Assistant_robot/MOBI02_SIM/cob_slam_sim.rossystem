@@ -1,0 +1,326 @@
+cob_slam_sim:
+	subSystems:
+		cob_gazebo
+	nodes:
+		joy_node:
+			from: "joy.joy_node"
+			interfaces:
+				- joy_pub: pub-> "joy_node::joy"
+			parameters:
+				- autorepeat_rate: "joy_node::autorepeat_rate"
+				  value: 20.0
+				- deadzone: "joy_node::deadzone"
+				  value: 0.3
+				- joy_dev: "joy_node::joy_dev"
+				  value: "/dev/input/js0"
+		teleop_twist_joy_node:
+			from: "teleop_twist_joy.teleop_node"
+			interfaces:
+				#- joy_sub: sub-> "teleop_node::joy"
+				- cmd_vel_pub: pub-> "teleop_node::cmd_vel"
+			parameters: 
+				- enable_button: "teleop_node::enable_button"
+				  value: 2
+				- enable_turbo_button: "teleop_node::enable_turbo_button"
+				  value: 5
+				- "axis_angular.yaw": "teleop_node::axis_angular.yaw"
+				  value: 0
+				- "scale_angular.yaw": "teleop_node::scale_angular.yaw"
+				  value: 0.4
+				- "axis_linear.x": "teleop_node::axis_linear.x"
+	  			  value: 1
+				- "scale_linear.x": "teleop_node::scale_linear.x"
+	  			  value: 0.3
+				- "scale_linear_turbo.x": "teleop_node::scale_linear_turbo.x"
+	  			  value: 0.6
+		twist_mux:
+			from: "twist_mux.twist_mux"
+			interfaces:
+				- cmd_vel_sub: sub-> "twist_mux::cmd_vel"
+				- "tricycle_controller/cmd_vel": pub-> "twist_mux::cmd_vel_out"
+			parameters:
+				- "topics.navigation.topic": "twist_mux::topics.navigation.topic"
+				  value: "cmd_vel"
+				- "topics.navigation.timeout": "twist_mux::topics.navigation.timeout"
+				  value: 0.5
+				- "topics.navigation.priority": "twist_mux::topics.navigation.priority"
+				  value: 10		
+				- "topics.tracker.topic": "twist_mux::topics.tracker.topic"
+				  value: "cmd_vel_tracker"
+				- "topics.tracker.timeout": "twist_mux::topics.tracker.timeout"
+				  value: 0.5
+				- "topics.tracker.priority": "twist_mux::topics.tracker.priority"
+				  value: 20		
+				- "topics.joystick.topic": "twist_mux::topics.joystick.topic"
+				  value: "cmd_vel"
+				- "topics.joystick.timeout": "twist_mux::topics.joystick.timeout"
+				  value: 0.5
+				- "topics.joystick.priority": "twist_mux::topics.joystick.priority"
+				  value: 100						    
+		ros2_laserscan_merger:
+      		from: "ros2_laser_scan_merger.ros2_laser_scan_merger_3"
+      		interfaces:
+      			- cloud_in_pub: pub-> "ros2_laser_scan_merger_3::cloud_in"
+      			- scan_left_sub: sub-> "ros2_laser_scan_merger_3::base_laser_left/scan_raw"
+      			- scan_right_sub: sub-> "ros2_laser_scan_merger_3::base_laser_right/scan_raw"
+      			- scan_front_sub: sub-> "ros2_laser_scan_merger_3::base_laser_front/scan_raw"
+      		parameters:
+				- "flip1": "ros2_laser_scan_merger_3::flip1"
+				  value: false
+				- "flip2": "ros2_laser_scan_merger_3::flip2"
+				  value: false
+				- "flip3": "ros2_laser_scan_merger_3::flip3"
+				  value: false
+				- "inverse1": "ros2_laser_scan_merger_3::inverse1"
+				  value: false
+				- "inverse2": "ros2_laser_scan_merger_3::inverse2"
+				  value: false
+				- "inverse3": "ros2_laser_scan_merger_3::inverse3"
+				  value: false
+				- "laser1Alpha": "ros2_laser_scan_merger_3::laser1Alpha"
+				  value: 180.0
+				- "laser1AngleMax": "ros2_laser_scan_merger_3::laser1AngleMax"
+				  value: 90.0
+				- "laser1AngleMin": "ros2_laser_scan_merger_3::laser1AngleMin"
+				  value: -90.0
+				- "laser1B": "ros2_laser_scan_merger_3::laser1B"
+				  value: 0
+				- "laser1G": "ros2_laser_scan_merger_3::laser1G"
+				  value: 0
+				- "laser1R": "ros2_laser_scan_merger_3::laser1R"
+				  value: 255
+				- "laser1XOff": "ros2_laser_scan_merger_3::laser1XOff"
+				  value: -0.244
+				- "laser1YOff": "ros2_laser_scan_merger_3::laser1YOff"
+				  value: 0.0
+				- "laser1ZOff": "ros2_laser_scan_merger_3::laser1ZOff"
+				  value: 0.20858
+				- "laser2Alpha": "ros2_laser_scan_merger_3::laser2Alpha"
+				  value: 60.0
+				- "laser2AngleMax": "ros2_laser_scan_merger_3::laser2AngleMax"
+				  value: 90.0
+				- "laser2AngleMin": "ros2_laser_scan_merger_3::laser2AngleMin"
+				  value: -90.0
+				- "laser2B": "ros2_laser_scan_merger_3::laser2B"
+				  value: 255
+				- "laser2G": "ros2_laser_scan_merger_3::laser2G"
+				  value: 0
+				- "laser2R": "ros2_laser_scan_merger_3::laser2R"
+				  value: 0
+				- "laser2XOff": "ros2_laser_scan_merger_3::laser2XOff"
+				  value: 0.122
+				- "laser2YOff": "ros2_laser_scan_merger_3::laser2YOff"
+				  value: 0.21131
+				- "laser2ZOff": "ros2_laser_scan_merger_3::laser2ZOff"
+				  value: 0.20858
+				- "laser3Alpha": "ros2_laser_scan_merger_3::laser3Alpha"
+				  value: 300.0
+				- "laser3AngleMax": "ros2_laser_scan_merger_3::laser3AngleMax"
+				  value: 90.0
+				- "laser3AngleMin": "ros2_laser_scan_merger_3::laser3AngleMin"
+				  value: -90.0
+				- "laser3B": "ros2_laser_scan_merger_3::laser3B"
+				  value: 0
+				- "laser3G": "ros2_laser_scan_merger_3::laser3G"
+				  value: 255
+				- "laser3R": "ros2_laser_scan_merger_3::laser3R"
+				  value: 0
+				- "laser3XOff": "ros2_laser_scan_merger_3::laser3XOff"
+				  value: 0.122
+				- "laser3YOff": "ros2_laser_scan_merger_3::laser3YOff"
+				  value: -0.21131
+				- "laser3ZOff": "ros2_laser_scan_merger_3::laser3ZOff"
+				  value: 0.20858
+				- "pointCloudTopic": "ros2_laser_scan_merger_3::pointCloudTopic"
+				  value: "cloud_in"
+				- "pointCloutFrameId": "ros2_laser_scan_merger_3::pointCloutFrameId"
+				  value: "base_chassis_link"
+				- "qos_overrides./parameter_events.publisher.depth": "ros2_laser_scan_merger_3::qos_overrides./parameter_events.publisher.depth"
+				  value: 1000
+				- "qos_overrides./parameter_events.publisher.reliability": "ros2_laser_scan_merger_3::qos_overrides./parameter_events.publisher.reliability"
+				  value: "best_effort"
+				- "scanTopic1": "ros2_laser_scan_merger_3::scanTopic1"
+				  value: "/base_laser_front/scan_raw"
+				- "scanTopic2": "ros2_laser_scan_merger_3::scanTopic2"
+				  value: "/base_laser_left/scan_raw"
+				- "scanTopic3": "ros2_laser_scan_merger_3::scanTopic3"
+				  value: "/base_laser_right/scan_raw"
+				- "show1": "ros2_laser_scan_merger_3::show1"
+				  value: true
+				- "show2": "ros2_laser_scan_merger_3::show2"
+				  value: true
+				- "show3": "ros2_laser_scan_merger_3::show3"
+				  value: true
+				- "use_sim_time": "ros2_laser_scan_merger_3::use_sim_time"
+				  value: true
+		pointcloud_to_laserscan:
+			from: "pointcloud_to_laserscan.pointcloud_to_laserscan"
+			interfaces:
+				- cloud_in_sub: sub-> "pointcloud_to_laserscan_node::cloud_in"
+				- merged_scan_pub: pub-> "pointcloud_to_laserscan_node::scan"
+			parameters:
+				- "angle_increment": "pointcloud_to_laserscan_node::angle_increment"
+				  value: 0.0087
+				- "angle_max": "pointcloud_to_laserscan_node::angle_max"
+				  value: 3.14
+				- "angle_min": "pointcloud_to_laserscan_node::angle_min"
+				  value: -3.14
+				- "inf_epsilon": "pointcloud_to_laserscan_node::inf_epsilon"
+				  value: 1.0
+				- "max_height": "pointcloud_to_laserscan_node::max_height"
+				  value: 1.0
+				- "min_height": "pointcloud_to_laserscan_node::min_height"
+				  value: 0.0
+				- "qos_overrides./parameter_events.publisher.depth": "pointcloud_to_laserscan_node::qos_overrides./parameter_events.publisher.depth"
+				  value: 1000
+				- "qos_overrides./parameter_events.publisher.reliability": "pointcloud_to_laserscan_node::qos_overrides./parameter_events.publisher.reliability"
+				  value: "best_effort"
+				- "queue_size": "pointcloud_to_laserscan_node::queue_size"
+				  value: 16
+				- "range_max": "pointcloud_to_laserscan_node::range_max"
+				  value: 29.5
+				- "range_min": "pointcloud_to_laserscan_node::range_min"
+				  value: 0.05
+				- "scan_time": "pointcloud_to_laserscan_node::scan_time"
+				  value: 0.3333
+				- "transform_tolerance": "pointcloud_to_laserscan_node::transform_tolerance"
+				  value: 0.01
+				- "use_inf": "pointcloud_to_laserscan_node::use_inf"
+				  value: true
+				- "use_sim_time": "pointcloud_to_laserscan_node::use_sim_time"
+				  value: true
+		slam_toolbox:
+			from: "slam_toolbox.slam_toolbox"
+			interfaces:
+				- map_sub: sub-> "async_slam_toolbox_node::map"
+				- scan_sub: sub-> "async_slam_toolbox_node::scan"
+				- map_pub: pub-> "async_slam_toolbox_node::map"
+				- tf_pub: pub-> "async_slam_toolbox_node::tf"
+			parameters: 
+			  - "solver_plugin": "async_slam_toolbox_node::solver_plugin"
+			    value: "solver_plugins::CeresSolver"
+			  - "ceres_linear_solver": "async_slam_toolbox_node::ceres_linear_solver"
+			    value: "SPARSE_NORMAL_CHOLESKY"
+			  - "ceres_preconditioner": "async_slam_toolbox_node::ceres_preconditioner"
+			    value: "SCHUR_JACOBI"
+			  - "ceres_trust_strategy": "async_slam_toolbox_node::ceres_trust_strategy"
+			    value: "LEVENBERG_MARQUARDT"
+			  - "ceres_dogleg_type": "async_slam_toolbox_node::ceres_dogleg_type"
+			    value: "TRADITIONAL_DOGLEG"
+			  - "ceres_loss_function": "async_slam_toolbox_node::ceres_loss_function"
+			    value: "None"
+			  - "odom_frame": "async_slam_toolbox_node::odom_frame"
+			    value: "odom"
+			  - "map_frame": "async_slam_toolbox_node::map_frame"
+			    value: "map"
+			  - "base_frame": "async_slam_toolbox_node::base_frame"
+			    value: "base_footprint"
+			  - "scan_topic": "async_slam_toolbox_node::scan_topic"
+			    value: "/scan"
+			  - "mode": "async_slam_toolbox_node::mode"
+			    value: "mapping"
+			  - "map_file_name": "async_slam_toolbox_node::map_file_name"
+			    value: "/home/nhg-yc/ros2_ws/tricycle_ws/cob_map_0410"
+			  - "map_start_at_dock": "async_slam_toolbox_node::map_start_at_dock"
+			    value: true
+			  - "debug_logging": "async_slam_toolbox_node::debug_logging"
+			    value: false
+			  - "throttle_scans": "async_slam_toolbox_node::throttle_scans"
+			    value: 1
+			  - "transform_publish_period": "async_slam_toolbox_node::transform_publish_period"
+			    value: 0.02
+			  - "map_update_interval": "async_slam_toolbox_node::map_update_interval"
+			    value: 5.0
+			  - "resolution": "async_slam_toolbox_node::resolution"
+			    value: 0.05
+			  - "max_laser_range": "async_slam_toolbox_node::max_laser_range"
+			    value: 29.5
+			  - "minimum_time_interval": "async_slam_toolbox_node::minimum_time_interval"
+			    value: 0.5
+			  - "transform_timeout": "async_slam_toolbox_node::transform_timeout"
+			    value: 0.2
+			  - "tf_buffer_duration": "async_slam_toolbox_node::tf_buffer_duration"
+			    value: 30.0
+			  - "stack_size_to_use": "async_slam_toolbox_node::stack_size_to_use"
+			    value: 40000000
+			  - "enable_interactive_mode": "async_slam_toolbox_node::enable_interactive_mode"
+			    value: true
+			  - "use_scan_matching": "async_slam_toolbox_node::use_scan_matching"
+			    value: true
+			  - "use_scan_barycenter": "async_slam_toolbox_node::use_scan_barycenter"
+			    value: true
+			  - "minimum_travel_distance": "async_slam_toolbox_node::minimum_travel_distance"
+			    value: 0.5
+			  - "minimum_travel_heading": "async_slam_toolbox_node::minimum_travel_heading"
+			    value: 0.5
+			  - "scan_buffer_size": "async_slam_toolbox_node::scan_buffer_size"
+			    value: 10
+			  - "scan_buffer_maximum_scan_distance": "async_slam_toolbox_node::scan_buffer_maximum_scan_distance"
+			    value: 10.0
+			  - "link_match_minimum_response_fine": "async_slam_toolbox_node::link_match_minimum_response_fine"
+			    value: 0.1
+			  - "link_scan_maximum_distance": "async_slam_toolbox_node::link_scan_maximum_distance"
+			    value: 1.5
+			  - "loop_search_maximum_distance": "async_slam_toolbox_node::loop_search_maximum_distance"
+			    value: 3.0
+			  - "do_loop_closing": "async_slam_toolbox_node::do_loop_closing"
+			    value: true
+			  - "loop_match_minimum_chain_size": "async_slam_toolbox_node::loop_match_minimum_chain_size"
+			    value: 10
+			  - "loop_match_maximum_variance_coarse": "async_slam_toolbox_node::loop_match_maximum_variance_coarse"
+			    value: 3.0
+			  - "loop_match_minimum_response_coarse": "async_slam_toolbox_node::loop_match_minimum_response_coarse"
+			    value: 0.35
+			  - "loop_match_minimum_response_fine": "async_slam_toolbox_node::loop_match_minimum_response_fine"
+			    value: 0.45
+			  - "correlation_search_space_dimension": "async_slam_toolbox_node::correlation_search_space_dimension"
+			    value: 0.5
+			  - "correlation_search_space_resolution": "async_slam_toolbox_node::correlation_search_space_resolution"
+			    value: 0.01
+			  - "correlation_search_space_smear_deviation": "async_slam_toolbox_node::correlation_search_space_smear_deviation"
+			    value: 0.1
+			  - "loop_search_space_dimension": "async_slam_toolbox_node::loop_search_space_dimension"
+			    value: 8.0
+			  - "loop_search_space_resolution": "async_slam_toolbox_node::loop_search_space_resolution"
+			    value: 0.05
+			  - "loop_search_space_smear_deviation": "async_slam_toolbox_node::loop_search_space_smear_deviation"
+			    value: 0.03
+			  - "distance_variance_penalty": "async_slam_toolbox_node::distance_variance_penalty"
+			    value: 0.5
+			  - "angle_variance_penalty": "async_slam_toolbox_node::angle_variance_penalty"
+			    value: 1.0
+			  - "fine_search_angle_offset": "async_slam_toolbox_node::fine_search_angle_offset"
+			    value: 0.00349
+			  - "coarse_search_angle_offset": "async_slam_toolbox_node::coarse_search_angle_offset"
+			    value: 0.349
+			  - "coarse_angle_resolution": "async_slam_toolbox_node::coarse_angle_resolution"
+			    value: 0.0349
+			  - "minimum_angle_penalty": "async_slam_toolbox_node::minimum_angle_penalty"
+			    value: 0.9
+			  - "minimum_distance_penalty": "async_slam_toolbox_node::minimum_distance_penalty"
+			    value: 0.5
+			  - "use_response_expansion": "async_slam_toolbox_node::use_response_expansion"
+			    value: true
+		rviz2:
+	  		from: "rviz2.rviz2"
+	  		interfaces:
+	  		  - cloud_in: sub-> "rviz2::cloud_in"
+	  		  - map: sub-> "rviz2::map"
+	  		  - robot_description_sub: sub-> "rviz2::robot_description"
+		robot_state_publisher:
+	  		from: "robot_state_publisher.robot_state_publisher"
+	  		interfaces:
+	  		  - 'joint_state': sub-> "robot_state_publisher::joint_states"
+	  		parameters:
+	  		  - "frame_prefix": "robot_state_publisher::frame_prefix"
+	  		    value: ""
+	  		  - "ignore_timestamp": "robot_state_publisher::ignore_timestamp"
+	  		    value: false
+	  		  - "publish_frequency": "robot_state_publisher::publish_frequency"
+	  		    value: 20.0
+		    
+	connections:
+		#- [ joy_pub , joy_sub ]
+		- [ cmd_vel_pub , cmd_vel_sub ]
+		- [ "tricycle_controller/cmd_vel" , "tricycle_controller/cmd_vel_sub" ]
+  	    

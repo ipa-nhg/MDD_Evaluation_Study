@@ -1,0 +1,63 @@
+base_driver:
+	artifacts:
+		base_driver:
+	    	node: base_driver
+	    	publishers:
+				'/base/twist_controller/default/steer_ctrl/parameter_updates':
+				  type: 'dynamic_reconfigure/msg/Config'
+				'/base/joint_states':
+				  type: 'sensor_msgs/msg/JointState'
+				'/base/twist_controller/wheel_commands':
+				  type: 'cob_base_controller_utils/msg/WheelCommands'
+				'/base/twist_controller/fl_caster_rotation_joint/parameter_updates':
+				  type: 'dynamic_reconfigure/msg/Config'
+				'/base/twist_controller/fl_caster_rotation_joint/parameter_descriptions':
+				  type: 'dynamic_reconfigure/msg/ConfigDescription'
+				'/base/twist_controller/fr_caster_rotation_joint/parameter_descriptions':
+				  type: 'dynamic_reconfigure/msg/ConfigDescription'
+				'/diagnostics':
+				  type: 'diagnostic_msgs/msg/DiagnosticArray'
+				'/base/twist_controller/fr_caster_rotation_joint/parameter_updates':
+				  type: 'dynamic_reconfigure/msg/Config'
+				'/base/odometry_controller/odometry':
+				  type: 'nav_msgs/msg/Odometry'
+				'/base/twist_controller/b_caster_rotation_joint/parameter_descriptions':
+				  type: 'dynamic_reconfigure/msg/ConfigDescription'
+				'/base/twist_controller/default/steer_ctrl/parameter_descriptions':
+				  type: 'dynamic_reconfigure/msg/ConfigDescription'
+				'/base/twist_controller/b_caster_rotation_joint/parameter_updates':
+				  type: 'dynamic_reconfigure/msg/Config'
+	    	subscribers:
+				'/base/twist_controller/command':
+				  type: 'geometry_msgs/msg/Twist'
+		    serviceservers:
+				'/base/driver/recover':
+				  type: 'std_srvs/srv/Trigger'
+				'/base/controller_manager/switch_controller':
+				  type: 'controller_manager_msgs/srv/SwitchController'
+				'/base/twist_controller/fl_caster_rotation_joint/set_parameters':
+				  type: 'dynamic_reconfigure/srv/Reconfigure'
+				'/base/driver/halt':
+				  type: 'std_srvs/srv/Trigger'
+				'/base/controller_manager/list_controllers':
+				  type: 'controller_manager_msgs/srv/ListControllers'
+				'/base/twist_controller/b_caster_rotation_joint/set_parameters':
+				  type: 'dynamic_reconfigure/srv/Reconfigure'
+				'/base/odometry_controller/reset_odometry':
+				  type: 'std_srvs/srv/Trigger'
+				'/base/driver/init':
+				  type: 'std_srvs/srv/Trigger'
+				'/base/twist_controller/fr_caster_rotation_joint/set_parameters':
+				  type: 'dynamic_reconfigure/srv/Reconfigure'
+				'/base/controller_manager/load_controller':
+				  type: 'controller_manager_msgs/srv/LoadController'
+				'/base/twist_controller/default/steer_ctrl/set_parameters':
+				  type: 'dynamic_reconfigure/srv/Reconfigure'
+				'/base/controller_manager/unload_controller':
+				  type: 'controller_manager_msgs/srv/UnloadController'
+				'/base/controller_manager/reload_controller_libraries':
+				  type: 'controller_manager_msgs/srv/ReloadControllerLibraries'
+				'/base/driver/shutdown':
+				  type: 'std_srvs/srv/Trigger'
+				'/base/controller_manager/list_controller_types':
+				  type: 'controller_manager_msgs/srv/ListControllerTypes'

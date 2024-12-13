@@ -1,0 +1,287 @@
+slam_toolbox:
+  artifacts:
+    async_slam_toolbox_node:
+      node: slam_toolbox
+      publishers:
+        'map':
+          type: 'nav_msgs/msg/OccupancyGrid'
+          qos:
+          # profile:
+          # history: UNKNOWN
+          # depth:
+            reliability: reliable
+            durability: transient_local
+        'map_metadata':
+          type: 'nav_msgs/msg/MapMetaData'
+          qos:
+          # profile:
+          # history: UNKNOWN
+          # depth:
+            reliability: reliable
+            durability: transient_local
+        'pose':
+          type: 'geometry_msgs/msg/PoseWithCovarianceStamped'
+          qos:
+          # profile:
+          # history: UNKNOWN
+          # depth:
+            reliability: reliable
+            durability: volatile
+        'slam_toolbox/graph_visualization':
+          type: 'visualization_msgs/msg/MarkerArray'
+          qos:
+          # profile:
+          # history: UNKNOWN
+          # depth:
+            reliability: reliable
+            durability: volatile
+        'slam_toolbox/scan_visualization':
+          type: 'sensor_msgs/msg/LaserScan'
+          qos:
+          # profile:
+          # history: UNKNOWN
+          # depth:
+            reliability: reliable
+            durability: volatile
+        'slam_toolbox/update':
+          type: 'visualization_msgs/msg/InteractiveMarkerUpdate'
+          qos:
+          # profile:
+          # history: UNKNOWN
+          # depth:
+            reliability: reliable
+            durability: volatile
+        'tf':
+          type: 'tf2_msgs/msg/TFMessage'
+          qos:
+          # profile:
+          # history: UNKNOWN
+          # depth:
+            reliability: reliable
+            durability: volatile
+        'tf':
+          type: 'tf2_msgs/msg/TFMessage'
+          qos:
+          # profile:
+          # history: UNKNOWN
+          # depth:
+            reliability: reliable
+            durability: volatile
+      subscribers:
+        'clock':
+          type: 'rosgraph_msgs/msg/Clock'
+        'map':
+          type: 'nav_msgs/msg/OccupancyGrid'
+        'scan':
+          type: 'sensor_msgs/msg/LaserScan'
+        'slam_toolbox/feedback':
+          type: 'visualization_msgs/msg/InteractiveMarkerFeedback'
+      serviceservers:
+        'slam_toolbox/clear_changes':
+          type: 'slam_toolbox/srv/Clear'
+        'slam_toolbox/deserialize_map':
+          type: 'slam_toolbox/srv/DeserializePoseGraph'
+        'slam_toolbox/dynamic_map':
+          type: 'nav_msgs/srv/GetMap'
+        'slam_toolbox/get_interactive_markers':
+          type: 'visualization_msgs/srv/GetInteractiveMarkers'
+        'slam_toolbox/manual_loop_closure':
+          type: 'slam_toolbox/srv/LoopClosure'
+        'slam_toolbox/pause_new_measurements':
+          type: 'slam_toolbox/srv/Pause'
+        'slam_toolbox/save_map':
+          type: 'slam_toolbox/srv/SaveMap'
+        'slam_toolbox/serialize_map':
+          type: 'slam_toolbox/srv/SerializePoseGraph'
+        'slam_toolbox/toggle_interactive_mode':
+          type: 'slam_toolbox/srv/ToggleInteractive'
+      parameters:
+        'angle_variance_penalty':
+          type: Double
+          value: 1.0
+        'base_frame':
+          type: String
+          value: "base_footprint"
+        'ceres_dogleg_type':
+          type: String
+          value: "TRADITIONAL_DOGLEG"
+        'ceres_linear_solver':
+          type: String
+          value: "SPARSE_NORMAL_CHOLESKY"
+        'ceres_loss_function':
+          type: String
+          value: "None"
+        'ceres_preconditioner':
+          type: String
+          value: "SCHUR_JACOBI"
+        'ceres_trust_strategy':
+          type: String
+          value: "LEVENBERG_MARQUARDT"
+        'coarse_angle_resolution':
+          type: Double
+          value: 0.0349
+        'coarse_search_angle_offset':
+          type: Double
+          value: 0.349
+        'correlation_search_space_dimension':
+          type: Double
+          value: 0.5
+        'correlation_search_space_resolution':
+          type: Double
+          value: 0.01
+        'correlation_search_space_smear_deviation':
+          type: Double
+          value: 0.1
+        'debug_logging':
+          type: Boolean
+          value: false
+        'distance_variance_penalty':
+          type: Double
+          value: 0.5
+        'do_loop_closing':
+          type: Boolean
+          value: true
+        'enable_interactive_mode':
+          type: Boolean
+          value: true
+        'fine_search_angle_offset':
+          type: Double
+          value: 0.00349
+        'interactive_mode':
+          type: Boolean
+          value: false
+        'link_match_minimum_response_fine':
+          type: Double
+          value: 0.1
+        'link_scan_maximum_distance':
+          type: Double
+          value: 1.5
+        'loop_match_maximum_variance_coarse':
+          type: Double
+          value: 3.0
+        'loop_match_minimum_chain_size':
+          type: Integer
+          value: 10
+        'loop_match_minimum_response_coarse':
+          type: Double
+          value: 0.35
+        'loop_match_minimum_response_fine':
+          type: Double
+          value: 0.45
+        'loop_search_maximum_distance':
+          type: Double
+          value: 3.0
+        'loop_search_space_dimension':
+          type: Double
+          value: 8.0
+        'loop_search_space_resolution':
+          type: Double
+          value: 0.05
+        'loop_search_space_smear_deviation':
+          type: Double
+          value: 0.03
+        'map_file_name':
+          type: String
+          value: ""
+        'map_frame':
+          type: String
+          value: "map"
+        'map_name':
+          type: String
+          value: "/map"
+        'map_start_at_dock':
+          type: Boolean
+          value: true
+        'map_update_interval':
+          type: Double
+          value: 5.0
+        'max_laser_range':
+          type: Double
+          value: 20.0
+        'minimum_angle_penalty':
+          type: Double
+          value: 0.9
+        'minimum_distance_penalty':
+          type: Double
+          value: 0.5
+        'minimum_time_interval':
+          type: Double
+          value: 0.5
+        'minimum_travel_distance':
+          type: Double
+          value: 0.5
+        'minimum_travel_heading':
+          type: Double
+          value: 0.5
+        'mode':
+          type: String
+          value: "mapping"
+        'odom_frame':
+          type: String
+          value: "odom"
+        'paused_new_measurements':
+          type: Boolean
+          value: false
+        'paused_processing':
+          type: Boolean
+          value: false
+        'position_covariance_scale':
+          type: Double
+          value: 1.0
+        'resolution':
+          type: Double
+          value: 0.05
+        'scan_buffer_maximum_scan_distance':
+          type: Double
+          value: 10.0
+        'scan_buffer_size':
+          type: Integer
+          value: 10
+        'scan_queue_size':
+          type: Integer
+          value: 1
+        'scan_topic':
+          type: String
+          value: "/scan"
+        'solver_plugin':
+          type: String
+          value: "solver_plugins::CeresSolver"
+        'stack_size_to_use':
+          type: Integer
+          value: 40000000
+        'tf_buffer_duration':
+          type: Double
+          value: 30.0
+        'throttle_scans':
+          type: Integer
+          value: 1
+        'transform_publish_period':
+          type: Double
+          value: 0.02
+        'transform_timeout':
+          type: Double
+          value: 0.2
+        'use_map_saver':
+          type: Boolean
+          value: true
+        'use_response_expansion':
+          type: Boolean
+          value: true
+        'use_scan_barycenter':
+          type: Boolean
+          value: true
+        'use_scan_matching':
+          type: Boolean
+          value: true
+        'use_sim_time':
+          type: Boolean
+          value: true
+        'yaw_covariance_scale':
+          type: Double
+          value: 1.0
+#        'map_start_at_dock':
+#          type: Any
+#          value: None
+#        'map_start_pose':
+#          type: Any
+#          value: None

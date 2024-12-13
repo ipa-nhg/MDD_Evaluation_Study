@@ -1,0 +1,30 @@
+slam_toolbox:
+	srvs:
+		Clear
+			request
+			response
+		DeserializePoseGraph
+			request
+				string filename
+				int8 match_type
+				'geometry_msgs/msg/Pose2D'[] initial_pose
+			response
+		LoopClosure
+			request
+			response
+		Pause
+			request
+			response
+				bool status
+		SaveMap
+			request
+				'std_msgs/msg/String' [] name
+			response
+		SerializePoseGraph
+			request
+				string filename
+			response
+		ToggleInteractive
+			request
+			response
+				

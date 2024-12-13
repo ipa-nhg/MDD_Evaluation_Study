@@ -1,0 +1,13 @@
+arm_controller:
+  artifacts:
+    arm_controller:
+      node: arm_controller
+      subscribers:
+        "~/joint_trajectory":
+          type: "std_msgs/msg/Float64MultiArray"
+      serviceservers:
+        "~/query_state":
+          type: "std_srvs/srv/Empty"
+      actionservers:
+        "~/follow_joint_trajectory":
+          type: "control_msgs/action/FollowJointTrajectory"  

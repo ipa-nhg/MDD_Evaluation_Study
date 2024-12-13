@@ -1,0 +1,16 @@
+cob_srvs:
+  srvs:
+    SetFloat
+      request
+      response
+    SetInt
+      request
+      response
+    SetString
+      request
+      response
+  actions:
+    SetStringAct
+      goal
+      result
+      feedback

@@ -1,0 +1,88 @@
+behavior_server:
+  artifacts:
+    behavior_server: # change to exector name
+      node: behavior_server
+      subscribers:
+        "local_costmap/costmap_raw":
+          type: "nav2_msgs/msg/Costmap"
+        "local_costmap/published_footprint":
+          type: "geometry_msgs/msg/PolygonStamped"
+      publishers:
+        "~/transition_event":
+          type: "lifecycle_msgs/msg/TransitionEvent"
+        "cmd_vel":
+          type: "geometry_msgs/msg/Twist"
+      serviceservers:
+        "~/change_state":
+          type: "lifecycle_msgs/srv/ChangeState"
+
+        "~/get_available_states":
+          type: "lifecycle_msgs/srv/GetAvailableStates"
+        "~/get_available_transitions":
+          type: "lifecycle_msgs/srv/GetAvailableTransitions"
+
+        "~/get_state":
+          type: "lifecycle_msgs/srv/GetState"
+        "~/get_transition_graph":
+          type: "lifecycle_msgs/srv/GetAvailableTransitions"
+      actionservers:
+        "backup":
+          type: "nav2_msgs/action/BackUp"
+        "drive_on_heading":
+          type: "nav2_msgs/action/DriveOnHeading"
+        "spin":
+          type: "nav2_msgs/action/Spin"
+        "wait":
+          type: "nav2_msgs/action/Wait"
+      parameters:
+        "bond_disable_heartbeat_timeout":
+          type: Boolean
+          value: True
+        "backup.plugin":
+          type: String
+          value: "nav2_behaviors/BackUp"
+        "behavior_plugins":
+          type: Array [String]
+          value: "['spin', 'backup', 'drive_on_heading', 'wait']"
+        "costmap_topic":
+          type: String
+          value: "local_costmap/costmap_raw"
+        "cycle_frequency":
+          type: Double
+          value: 10.0
+        "drive_on_heading.plugin":
+          type: String
+          value: "nav2_behaviors/DriveOnHeading"
+        "footprint_topic":
+          type: String
+          value: "local_costmap/published_footprint"
+        "global_frame":
+          type: String
+          value: "odom"
+        "max_rotational_vel":
+          type: Double
+          value: 1.0
+        "min_rotational_vel":
+          type: Double
+          value: 0.4
+        "robot_base_frame":
+          type: String
+          value: "base_link"
+        "rotational_acc_lim":
+          type: Double
+          value: 3.2
+        "simulate_ahead_time":
+          type: Double
+          value: 2.0
+        "spin.plugin":
+          type: String
+          value: "nav2_behaviors/Spin"
+        "transform_tolerance":
+          type: Double
+          value: 0.1
+        "use_sim_time":
+          type: Boolean
+          value: False
+        "wait.plugin":
+          type: String
+          value: "nav2_behaviors/Wait"

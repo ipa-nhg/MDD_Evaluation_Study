@@ -1,0 +1,7 @@
+cob_mimic_controller:
+  artifacts:
+    mimic_controller:
+      node: /mimic_controller
+      serviceservers:
+        'set_mimic':
+          type: 'cob_srvs/srv/SetString'

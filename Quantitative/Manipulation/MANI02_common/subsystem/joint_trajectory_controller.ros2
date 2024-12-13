@@ -1,0 +1,252 @@
+joint_trajectory_controller:
+  artifacts:
+    joint_trajectory_controller: # change to exector name
+      node: joint_trajectory_controller
+      subscribers:
+        "~/joint_trajectory":
+          type: "trajectory_msgs/msg/JointTrajectory"
+        "parameter_events":
+          type: "rcl_interfaces/msg/ParameterEvent"
+      publishers:
+        "~/controller_state":
+          type: "control_msgs/msg/JointTrajectoryControllerState"
+        "~/state":
+          type: "control_msgs/msg/JointTrajectoryControllerState"
+        "~/transition_event":
+          type: "lifecycle_msgs/msg/TransitionEvent"
+        "parameter_events":
+          type: "rcl_interfaces/msg/ParameterEvent"
+        "rosout":
+          type: "rcl_interfaces/msg/Log"
+      serviceservers:
+        "~/describe_parameters":
+          type: "rcl_interfaces/srv/DescribeParameters"
+        "~/get_parameter_types":
+          type: "rcl_interfaces/srv/GetParameterTypes"
+        "~/get_parameters":
+          type: "rcl_interfaces/srv/GetParameters"
+        "~/list_parameters":
+          type: "rcl_interfaces/srv/ListParameters"
+        "~/query_state":
+          type: "control_msgs/srv/QueryTrajectoryState"
+        "~/set_parameters":
+          type: "rcl_interfaces/srv/SetParameters"
+        "~/set_parameters_atomically":
+          type: "rcl_interfaces/srv/SetParametersAtomically"
+      actionservers:
+        "~/follow_joint_trajectory":
+          type: "control_msgs/action/FollowJointTrajectory"
+      parameters:
+        "action_monitor_rate":
+          type: Double
+          value: 20.0
+        "allow_integration_in_goal_trajectories":
+          type: Boolean
+          value: False
+        "allow_nonzero_velocity_at_trajectory_end":
+          type: Boolean
+          value: True
+        "allow_partial_joints_goal":
+          type: Boolean
+          value: False
+        "cmd_timeout":
+          type: Double
+          value: 0.0
+        "command_interfaces":
+          type: Array[String]
+          value: "['position']"
+        "command_joints":
+          type: Array[String]
+          value: "[]"
+        "constraints.elbow_joint.goal":
+          type: Double
+          value: 0.1
+        "constraints.elbow_joint.trajectory":
+          type: Double
+          value: 0.2
+        "constraints.goal_time":
+          type: Double
+          value: 0.0
+        "constraints.shoulder_lift_joint.goal":
+          type: Double
+          value: 0.1
+        "constraints.shoulder_lift_joint.trajectory":
+          type: Double
+          value: 0.2
+        "constraints.shoulder_pan_joint.goal":
+          type: Double
+          value: 0.1
+        "constraints.shoulder_pan_joint.trajectory":
+          type: Double
+          value: 0.2
+        "constraints.stopped_velocity_tolerance":
+          type: Double
+          value: 0.2
+        "constraints.wrist_1_joint.goal":
+          type: Double
+          value: 0.1
+        "constraints.wrist_1_joint.trajectory":
+          type: Double
+          value: 0.2
+        "constraints.wrist_2_joint.goal":
+          type: Double
+          value: 0.1
+        "constraints.wrist_2_joint.trajectory":
+          type: Double
+          value: 0.2
+        "constraints.wrist_3_joint.goal":
+          type: Double
+          value: 0.1
+        "constraints.wrist_3_joint.trajectory":
+          type: Double
+          value: 0.2
+        "gains.elbow_joint.angle_wraparound":
+          type: Boolean
+          value: False
+        "gains.elbow_joint.d":
+          type: Double
+          value: 0.0
+        "gains.elbow_joint.ff_velocity_scale":
+          type: Double
+          value: 0.0
+        "gains.elbow_joint.i":
+          type: Double
+          value: 0.0
+        "gains.elbow_joint.i_clamp":
+          type: Double
+          value: 0.0
+        "gains.elbow_joint.normalize_error":
+          type: Boolean
+          value: False
+        "gains.elbow_joint.p":
+          type: Double
+          value: 0.0
+        "gains.shoulder_lift_joint.angle_wraparound":
+          type: Boolean
+          value: False
+        "gains.shoulder_lift_joint.d":
+          type: Double
+          value: 0.0
+        "gains.shoulder_lift_joint.ff_velocity_scale":
+          type: Double
+          value: 0.0
+        "gains.shoulder_lift_joint.i":
+          type: Double
+          value: 0.0
+        "gains.shoulder_lift_joint.i_clamp":
+          type: Double
+          value: 0.0
+        "gains.shoulder_lift_joint.normalize_error":
+          type: Boolean
+          value: False
+        "gains.shoulder_lift_joint.p":
+          type: Double
+          value: 0.0
+        "gains.shoulder_pan_joint.angle_wraparound":
+          type: Boolean
+          value: False
+        "gains.shoulder_pan_joint.d":
+          type: Double
+          value: 0.0
+        "gains.shoulder_pan_joint.ff_velocity_scale":
+          type: Double
+          value: 0.0
+        "gains.shoulder_pan_joint.i":
+          type: Double
+          value: 0.0
+        "gains.shoulder_pan_joint.i_clamp":
+          type: Double
+          value: 0.0
+        "gains.shoulder_pan_joint.normalize_error":
+          type: Boolean
+          value: False
+        "gains.shoulder_pan_joint.p":
+          type: Double
+          value: 0.0
+        "gains.wrist_1_joint.angle_wraparound":
+          type: Boolean
+          value: False
+        "gains.wrist_1_joint.d":
+          type: Double
+          value: 0.0
+        "gains.wrist_1_joint.ff_velocity_scale":
+          type: Double
+          value: 0.0
+        "gains.wrist_1_joint.i":
+          type: Double
+          value: 0.0
+        "gains.wrist_1_joint.i_clamp":
+          type: Double
+          value: 0.0
+        "gains.wrist_1_joint.normalize_error":
+          type: Boolean
+          value: False
+        "gains.wrist_1_joint.p":
+          type: Double
+          value: 0.0
+        "gains.wrist_2_joint.angle_wraparound":
+          type: Boolean
+          value: False
+        "gains.wrist_2_joint.d":
+          type: Double
+          value: 0.0
+        "gains.wrist_2_joint.ff_velocity_scale":
+          type: Double
+          value: 0.0
+        "gains.wrist_2_joint.i":
+          type: Double
+          value: 0.0
+        "gains.wrist_2_joint.i_clamp":
+          type: Double
+          value: 0.0
+        "gains.wrist_2_joint.normalize_error":
+          type: Boolean
+          value: False
+        "gains.wrist_2_joint.p":
+          type: Double
+          value: 0.0
+        "gains.wrist_3_joint.angle_wraparound":
+          type: Boolean
+          value: False
+        "gains.wrist_3_joint.d":
+          type: Double
+          value: 0.0
+        "gains.wrist_3_joint.ff_velocity_scale":
+          type: Double
+          value: 0.0
+        "gains.wrist_3_joint.i":
+          type: Double
+          value: 0.0
+        "gains.wrist_3_joint.i_clamp":
+          type: Double
+          value: 0.0
+        "gains.wrist_3_joint.normalize_error":
+          type: Boolean
+          value: False
+        "gains.wrist_3_joint.p":
+          type: Double
+          value: 0.0
+        "interpolation_method":
+          type: String
+          value: "splines"
+        "joints":
+          type: Array[String]
+          value: "['shoulder_pan_joint', 'shoulder_lift_joint', 'elbow_joint', 'wrist_1_joint', 'wrist_2_joint', 'wrist_3_joint']"
+        "open_loop_control":
+          type: Boolean
+          value: False
+        "robot_description":
+          type: String
+          value: ""
+        "state_interfaces":
+          type: Array[String]
+          value: "['position', 'velocity']"
+        "state_publish_rate":
+          type: Double
+          value: 100.0
+        "update_rate":
+          type: Integer
+          value: 0
+        "use_sim_time":
+          type: Boolean
+          value: False

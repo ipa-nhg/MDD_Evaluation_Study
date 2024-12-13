@@ -1,0 +1,30 @@
+planner_server:
+  artifacts:
+    planner_server: # change to exector name
+      node: planner_server
+      publishers:
+
+        "plan":
+          type: "nav_msgs/msg/Path"
+        "~/transition_event":
+          type: "lifecycle_msgs/msg/TransitionEvent"
+
+      serviceservers:
+        "~/change_state":
+          type: "lifecycle_msgs/srv/ChangeState"
+
+        "~/get_available_states":
+          type: "lifecycle_msgs/srv/GetAvailableStates"
+        "~/get_available_transitions":
+          type: "lifecycle_msgs/srv/GetAvailableTransitions"
+
+        "~/get_state":
+          type: "lifecycle_msgs/srv/GetState"
+        "~/get_transition_graph":
+          type: "lifecycle_msgs/srv/GetAvailableTransitions"
+
+      actionservers:
+        "compute_path_through_poses":
+          type: "nav2_msgs/action/ComputePathThroughPoses"
+        "compute_path_to_pose":
+          type: "nav2_msgs/action/ComputePathToPose"

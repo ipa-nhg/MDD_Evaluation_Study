@@ -1,0 +1,52 @@
+waypoint_follower:
+  artifacts:
+    waypoint_follower: # change to exector name
+      node: waypoint_follower
+      publishers:
+        "~/transition_event":
+          type: "lifecycle_msgs/msg/TransitionEvent"
+      serviceservers:
+        "~/change_state":
+          type: "lifecycle_msgs/srv/ChangeState"
+
+        "~/get_available_states":
+          type: "lifecycle_msgs/srv/GetAvailableStates"
+        "~/get_available_transitions":
+          type: "lifecycle_msgs/srv/GetAvailableTransitions"
+
+        "~/get_state":
+          type: "lifecycle_msgs/srv/GetState"
+        "~/get_transition_graph":
+          type: "lifecycle_msgs/srv/GetAvailableTransitions"
+
+      actionclients:
+        "navigate_to_pose":
+          type: "nav2_msgs/action/NavigateToPose"
+      actionservers:
+        "follow_waypoints":
+          type: "nav2_msgs/action/FollowWaypoints"
+      parameters:
+        "bond_disable_heartbeat_timeout":
+          type: Boolean
+          value: True
+        "loop_rate":
+          type: Integer
+          value: 200
+        "stop_on_failure":
+          type: Boolean
+          value: False
+        "use_sim_time":
+          type: Boolean
+          value: False
+        "wait_at_waypoint.enabled":
+          type: Boolean
+          value: True
+        "wait_at_waypoint.plugin":
+          type: String
+          value: "nav2_waypoint_follower::WaitAtWaypoint"
+        "wait_at_waypoint.waypoint_pause_duration":
+          type: Integer
+          value: 200
+        "waypoint_task_executor_plugin":
+          type: String
+          value: "wait_at_waypoint"
