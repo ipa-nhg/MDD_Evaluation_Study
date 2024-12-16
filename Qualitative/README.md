@@ -1,10 +1,5 @@
 ## QUALITATIVE EVALUATION
 
-
-For the qualitative evaluation of the proposed MDD solution against conventional robotics software development, a questionnaire has been made available to users. 
-
-The survey is composed of the following questions:
-
 ### Section 1: Responder Profile
 
 **Q1** How many years of experience do you have in software development for the robotics field?  
