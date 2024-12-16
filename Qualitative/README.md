@@ -29,7 +29,6 @@
 - [ ] No, I typically start by writing or collecting nodes that implement the required features.  
 - [ ] Sometimes, it depends on the project and the maturity of the expected solution.  
 
----
 
 ## Section 2: Models Evaluation
 
@@ -46,13 +45,13 @@
 - [ ] ✩✩✩  
 - [ ] ✩✩✩✩  
 - [ ] ✩✩✩✩✩ (Strongly agree)  
+
 **Q7** Do you think the models are precise in capturing the nuances of ROS systems?  
 - [ ] ✩ (Strongly disagree)  
 - [ ] ✩✩  
 - [ ] ✩✩✩  
 - [ ] ✩✩✩✩  
 - [ ] ✩✩✩✩✩ (Strongly agree)  
----
 
 ## Section 3: Ease of Use
 
@@ -62,43 +61,48 @@
 - [ ] ✩✩✩  
 - [ ] ✩✩✩✩  
 - [ ] ✩✩✩✩✩ (Strongly agree)  
+
 **Q9** Do you feel confident using the RosTooling?  
 - [ ] ✩ (Strongly disagree)  
 - [ ] ✩✩  
 - [ ] ✩✩✩  
 - [ ] ✩✩✩✩  
 - [ ] ✩✩✩✩✩ (Strongly agree)  
+
 **Q10** Do you find the RosTooling unnecessarily complex?  
 - [ ] ✩ (Strongly disagree)  
 - [ ] ✩✩  
 - [ ] ✩✩✩  
 - [ ] ✩✩✩✩  
 - [ ] ✩✩✩✩✩ (Strongly agree)  
+
 **Q11** Do you think you need assistance to use the RosTooling in your projects?  
 - [ ] ✩ (Strongly disagree)  
 - [ ] ✩✩  
 - [ ] ✩✩✩  
 - [ ] ✩✩✩✩  
 - [ ] ✩✩✩✩✩ (Strongly agree)  
+
 **Q12** Do you find the RosTooling too cumbersome or unmanageable?  
 - [ ] ✩ (Strongly disagree)  
 - [ ] ✩✩  
 - [ ] ✩✩✩  
 - [ ] ✩✩✩✩  
 - [ ] ✩✩✩✩✩ (Strongly agree)  
+
 **Q13** Was learning to use the RosTooling approach easy for you?  
 - [ ] ✩ (Strongly disagree)  
 - [ ] ✩✩  
 - [ ] ✩✩✩  
 - [ ] ✩✩✩✩  
 - [ ] ✩✩✩✩✩ (Strongly agree)  
+
 **Q14** Do you think new users need to learn too many things to be able to work with the RosTooling?  
 - [ ] ✩ (Strongly disagree)  
 - [ ] ✩✩  
 - [ ] ✩✩✩  
 - [ ] ✩✩✩✩  
 - [ ] ✩✩✩✩✩ (Strongly agree)  
----
 
 ## Section 4: Usability
 
@@ -108,67 +112,76 @@
 - [ ] ✩✩✩  
 - [ ] ✩✩✩✩  
 - [ ] ✩✩✩✩✩ (Strongly agree)  
+
 **Q16** By using the RosTooling, do you find it easy to integrate models with your everyday code (software you wrote manually)?  
 - [ ] ✩ (Strongly disagree)  
 - [ ] ✩✩  
 - [ ] ✩✩✩  
 - [ ] ✩✩✩✩  
 - [ ] ✩✩✩✩✩ (Strongly agree)  
+
 **Q17** Do you think the features integrated within the RosTooling are inconsistent among them?  
 - [ ] ✩ (Strongly disagree)  
 - [ ] ✩✩  
 - [ ] ✩✩✩  
 - [ ] ✩✩✩✩  
 - [ ] ✩✩✩✩✩ (Strongly agree)  
+
 **Q18** Do you find the model extraction tools useful during the development of robotic solutions?  
 - [ ] ✩ (Strongly disagree)  
 - [ ] ✩✩  
 - [ ] ✩✩✩  
 - [ ] ✩✩✩✩  
 - [ ] ✩✩✩✩✩ (Strongly agree)  
+
 **Q19** Do you find the ROS node code generators (e.g., rossdl) useful during the development of robotic solutions?  
 - [ ] ✩ (Strongly disagree)  
 - [ ] ✩✩  
 - [ ] ✩✩✩  
 - [ ] ✩✩✩✩  
 - [ ] ✩✩✩✩✩ (Strongly agree)  
+
 **Q20** Do you find the ROS system code generators (packages containing the launch file structure) useful during the development of robotic solutions?  
 - [ ] ✩ (Strongly disagree)  
 - [ ] ✩✩  
 - [ ] ✩✩✩  
 - [ ] ✩✩✩✩  
 - [ ] ✩✩✩✩✩ (Strongly agree)  
+
 **Q21** Do you find the visualization tools useful for the design of the system?  
 - [ ] ✩ (Strongly disagree)  
 - [ ] ✩✩  
 - [ ] ✩✩✩  
 - [ ] ✩✩✩✩  
 - [ ] ✩✩✩✩✩ (Strongly agree)  
+
 **Q22** Do you find that the RosTooling approach reduces the validation and testing efforts for you?  
 - [ ] ✩ (Strongly disagree)  
 - [ ] ✩✩  
 - [ ] ✩✩✩  
 - [ ] ✩✩✩✩  
 - [ ] ✩✩✩✩✩ (Strongly agree)  
+
 **Q23** Do you find that the code generator makes it easier the implementation and deployment for you?  
 - [ ] ✩ (Strongly disagree)  
 - [ ] ✩✩  
 - [ ] ✩✩✩  
 - [ ] ✩✩✩✩  
 - [ ] ✩✩✩✩✩ (Strongly agree)  
+
 **Q24** Generally speaking, do you think that the communication between developers is reduced by using models?  
 - [ ] ✩ (Strongly disagree)  
 - [ ] ✩✩  
 - [ ] ✩✩✩  
 - [ ] ✩✩✩✩  
 - [ ] ✩✩✩✩✩ (Strongly agree)  
+
 **Q25** Does the RosTooling improve the way you develop software by encouraging you to think about the design of your solution before you start writing the code?  
 - [ ] ✩ (Strongly disagree)  
 - [ ] ✩✩  
 - [ ] ✩✩✩  
 - [ ] ✩✩✩✩  
 - [ ] ✩✩✩✩✩ (Strongly agree)  
----
 
 ## Section 5: Comparative Evaluation with Existing Methods
 
@@ -178,25 +191,27 @@
 - [ ] ✩✩✩  
 - [ ] ✩✩✩✩  
 - [ ] ✩✩✩✩✩ (Strongly agree)  
+
 **Q27** When configuring a ROS system with the RosTooling, is the amount of changes inside the code reduced compared to manual development of launch files?  
 - [ ] ✩ (Strongly disagree)  
 - [ ] ✩✩  
 - [ ] ✩✩✩  
 - [ ] ✩✩✩✩  
 - [ ] ✩✩✩✩✩ (Strongly agree)  
+
 **Q28** Do you find that the models from the RosTooling can be better understood compared to manually written packages?  
 - [ ] ✩ (Strongly disagree)  
 - [ ] ✩✩  
 - [ ] ✩✩✩  
 - [ ] ✩✩✩✩  
 - [ ] ✩✩✩✩✩ (Strongly agree)  
+
 **Q29** Is the system software developed with the RosTooling better documented than typical manual-written launch packages?  
 - [ ] ✩ (Strongly disagree)  
 - [ ] ✩✩  
 - [ ] ✩✩✩  
 - [ ] ✩✩✩✩  
 - [ ] ✩✩✩✩✩ (Strongly agree)  
----
 
 ## Section 6: Future Usage Intentions
 
@@ -206,12 +221,12 @@
 - [ ] ✩✩✩  
 - [ ] ✩✩✩✩  
 - [ ] ✩✩✩✩✩ (Strongly agree)  
+
 **Q31** After the test of the RosTooling, do you intend to explore other model-based solutions to be applied to your development process?  
 - [ ] ✩ (Strongly disagree)  
 - [ ] ✩✩  
 - [ ] ✩✩✩  
 - [ ] ✩✩✩✩  
 - [ ] ✩✩✩✩✩ (Strongly agree)  
----
 
 *Indicates that the question is mandatory.*

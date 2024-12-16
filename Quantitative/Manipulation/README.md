@@ -60,3 +60,11 @@ A configurable robot should be able to perceive, pick, and place small boxes. Ad
 
 - **Difficulty:** Complex  
 
+## Graphical representation
+
+Graphically the systems, thanks to the MDD proposed solution, can be shown as:
+
+<img src="MANI02_common/Ur5e_system.jpg" alt="Ur5e" width="600"/>
+
+*Figure 1: Simplified view of the MANI-02 implementation using the RosTooling.*
+

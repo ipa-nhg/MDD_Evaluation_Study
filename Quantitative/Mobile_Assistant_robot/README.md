@@ -52,3 +52,10 @@ The robot is expected to navigate itself through busy rooms and corridors to mak
 - **Difficulty:** Complex  
 - **Environment:** Real robot and simulation
 
+## Graphical representation
+
+Graphically the systems, thanks to the MDD proposed solution, can be shown as:
+
+<img src="MOBI02/Cob_nav_sirius1.jpg" alt="cob_architecture" width="600"/>
+
+*Figure 1: Simplified view of the MOBI-02 story implementation using the RosTooling.*
