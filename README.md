@@ -1,8 +1,14 @@
 ## MDD EVALUATION STUDY
 
-This repository collects data from the study we drive to evaluate the advantages of using Model-driven developemnt (MDD) techniques for the integration of robotics system based on ROS.
+This repository collects data from the study we drive to evaluate the advantages of using Model-Driven Developemnt (MDD) techniques for the integration of robotics system based on ROS. For our case we used as MDD solution technology the RosTooling(*), which directly target the ROS ecosystem.
 
-For more information about the RosTooling we recommend the review of the following scientific work:
+To cover all the aspects of an evaluation we opted for the combination of a quantitative with a qualitative evaluation. Both are documented within this repository:
+- [Quantitative Study](Quantitative/README.md)
+- [Qualitative Study](Qualitative/README.md)
+
+
+
+(*)For more information about the RosTooling we recommend the review of the following scientific work:
 - Paper: Bootstrapping MDE Development from ROS Manual Code - Part 1: Metamodeling [IRC19 paper](https://ieeexplore.ieee.org/document/8675668)
 - Paper: Bootstrapping MDE Development from ROS Manual Code - Part 2: Model Generation [Models paper](https://ieeexplore.ieee.org/document/8906937)
 - Journal Paper: Bootstrapping MDE development from ROS manual code - Part 2: Model generation and leveraging models at runtime and  [SoSym paper](https://link.springer.com/article/10.1007/s10270-021-00873-2)
