@@ -1,19 +1,62 @@
 # MANIPULATION USE CASES  
 
-Reference: [RosToolingUserStoryImplementation](https://github.com/David-its-me/RosToolingUserStoryImplementation)
+The use cases for the manipulation area have been developed using two different types of Robots, the UR5e from Universal Robots and the Pilz PRBT. For both cases exists a driver written in ROS 2 to command new positions and get data from the encoders.
 
-## MANI-01 - Sample movements
+<img src="../images/UR+PRBT_hw.png" alt="UR+PRBT_hw" width="500"/>
 
-A company wants to demonstrate its expertise at its trade fair stand where a robotic arm should perform simple pick and place move- ment sequences in a repetitive cycle. There is not much time left for preparation, so they want to have the robot arm into operation as quickly as possible.
+*Figure 1: Real robot on the laboratory experiments hall.*
 
-## MANI-02 - QR Detection and Decision Methodology of a Picking robot  
+<img src="../images/UR_Cell.png" alt="UR_rviz" width="350"/><img src="../images/PRBT_Cell.png" alt="PRBT_rviz" width="350"/>
 
-In the scenario a robotic arm is integrated into a production line, where smaller packets on a conveyor belt drive by. Currently, the robot is responsible to pick and sort out packets with a specific color from a conveyor belt. Now there is a need to have a more fine granular differentiation, which packets should be sorted out. Therefore the technical director decided to use labels with QR-Codes instead of the packet color. The currently deployed version of the software also contains a module, that is responsible to do the decision-making part, about packages which must be sorted out. This part of the software must be reimplemented. For that, there must be an algorithm which is able to detect and read a QR-Codes. Based on the information on the QR-Code there is another module needed, that decides if the packet must be picked.
-  
-## MANI-03 - Pick and place ball 
+*Figure 2: UR5e and PRBT RVIZ visualization.*
 
-A toy manufacturer wants to have a packing robot that is able to pack objects in a cardboard box. In particular the manipulator should be able to pick a ball and place it in a carton box. The surrounding environment is very static. This means there are no people or moving objects around the robot. The ball and the box also always have the same size and position, the robot therefore needs little or no perception of its surroundings.
-  
-## MANI-04 Pick Box from shelf with GUI  
+The auto-generated code which run on the real robots is available under: [RosToolingUserStoryImplementation](https://github.com/David-its-me/RosToolingUserStoryImplementation)
 
-A pharmacy shop wants to build a system, that can automatically pick drug packings from a small warehouse within the shop. Until now the medicine boxes have been picked out manually by the working staff. An configurable robot shall be able to percept and pick and place small boxes. Also a simple GUI is installed at the counter to request medicine to be brought by the system.
+## Overview of Implemented User Stories for the Manipulation Case
+
+| **ID**       | **User Story**                                         |
+|--------------|-------------------------------------------------------|
+| **MANI-01**  | Sample movements                                      |
+
+### Description
+A company wants to demonstrate its expertise at its trade fair stand where a robotic arm should perform simple pick-and-place movement sequences in a repetitive cycle. There is not much time left for preparation, so they want to have the robot arm operational as quickly as possible.
+
+- **Difficulty:** Simple  
+
+---
+
+| **ID**       | **User Story**                                         |
+|--------------|-------------------------------------------------------|
+| **MANI-02**  | QR detection and decision methodology of a picking robot |
+
+### Description
+In this scenario, a robotic arm is integrated into a production line, where smaller packets on a conveyor belt drive by. Currently, the robot is responsible for picking and sorting out packets with a specific color from the conveyor belt.  
+Now, there is a need for more fine-grained differentiation regarding which packets should be sorted out. The technical director decided to use labels with QR codes instead of packet colors. The currently deployed software includes a module for decision-making about packets to be sorted out.  
+This part of the software must be reimplemented. An algorithm is needed to detect and read QR codes. Based on the information from the QR code, another module will decide if the packet should be picked.
+
+- **Difficulty:** Medium  
+
+---
+
+| **ID**       | **User Story**                                         |
+|--------------|-------------------------------------------------------|
+| **MANI-03**  | Pick and place ball                                   |
+
+### Description
+A toy manufacturer wants a packing robot capable of packing objects into cardboard boxes. Specifically, the manipulator should pick up a ball and place it into a carton box.  
+The surrounding environment is very static, meaning there are no people or moving objects around the robot. Both the ball and the box are consistent in size and position, so the robot requires little to no perception of its surroundings.
+
+- **Difficulty:** Simple  
+
+---
+
+| **ID**       | **User Story**                                         |
+|--------------|-------------------------------------------------------|
+| **MANI-04**  | Pick box from shelf with GUI                          |
+
+### Description
+A pharmacy shop wants to build a system that can automatically pick drug packages from a small warehouse within the shop. Currently, the medicine boxes are picked manually by the staff.  
+A configurable robot should be able to perceive, pick, and place small boxes. Additionally, a simple GUI will be installed at the counter to request medicine, which the system will then retrieve.
+
+- **Difficulty:** Complex  
+

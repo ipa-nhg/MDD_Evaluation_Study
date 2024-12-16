@@ -7,6 +7,16 @@ All the documentation about how to use the RosTooling is publicly available unde
 - [Manipulation](Manipulation/README.md)
 - [Mobile Assistand Robot](Mobile_Assistant_robot/README.md)
 
+Graphically the systems, thanks to the MDD proposed solution, are shows as:
+
+<img src="Manipulation/MANI02_common/Ur5e_system.jpg" alt="Ur5e" width="600"/>
+
+*Figure 1: Simplified view of a manipulation case using the RosTooling.*
+
+<img src="Mobile_Assistant_robot/MOBI02/Cob_nav_sirius1.jpg" alt="cob_saturn" width="600"/>
+
+*Figure 2: Simplified view of a mobile assistant robot case using the RosTooling.*
+
 Technical related repositories:
 - RosTooling source code: [RosTooling](https://github.com/ipa320/RosTooling)
 - ROS2 embedded code generator: [rossdl](https://github.com/CoreSenseEU/rossdl)
